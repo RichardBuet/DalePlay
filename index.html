@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Spotiday v0.23</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  
+html {
+  --main-bg-color: #0e0e0e;
+  --main-font-color: #b9b5b5;
+  --main-highlight-color: #fff;
+  --main-link-active-color: #fff;
+  --main-border-color: #8080804d;
+  --activity-bg-color: #000;
+  --footer-height: 100px;
+  --main-bg-color-dark: #202020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Lato", Arial, sans-serif;
+  line-height: 1.4;
+  font-size: 14px;
+  color: var(--main-font-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+  margin: 0;
+  color: var(--main-highlight-color);
+}
+
+.button {
+  padding: 15px 10px;
+  background: transparent;
+  border: 1px solid var(--main-font-color);
+  border-radius: 20px;
+  color: var(--main-font-color);
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: all 0.3s;
+  letter-spacing: 1.2px;
+}
+.button:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.link {
+  display: inline-block;
+  color: var(--main-font-color);
+  padding: 5px;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.link:visited, .link:focus .link:hover, .link:active {
+  color: var(--main-font-color);
+}
+.link:hover, .link:active, .link:focus {
+  color: var(--main-link-active-color);
+}
+
+.wrapper {
+  display: grid;
+  background: var(--main-bg-color);
+  grid-gap: 10px;
+  min-height: 100vh;
+  grid-template-columns: 100%;
+  grid-template-areas: "main" "sidebar";
+}
+@media (min-width: 800px) {
+  .wrapper {
+    grid-template-columns: 200px auto;
+    grid-template-areas: "sidebar main";
+  }
+}
+@media (min-width: 1200px) {
+  .wrapper {
+    grid-template-columns: 200px auto 200px;
+    grid-template-areas: "sidebar main social";
+  }
+}
+
+.sidebar {
+  background: var(--activity-bg-color);
+  grid-area: sidebar;
+}
+
+.sidebar li {
+  line-height: 2;
+}
+
+.sidebar__header {
+  margin-bottom: 5px;
+}
+
+.sidebar__header {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+main {
+  grid-area: main;
+  padding: 10px 20px;
+}
+@media (min-width: 800px) {
+  main {
+    padding: 10px 20px calc(var(--footer-height) + 40px);
+    margin-bottom: 20px;
+  }
+}
+
+.main__header h1 {
+  margin-bottom: 20px;
+  font-size: 38px;
+}
+
+.main__nav {
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--main-border-color);
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  grid-gap: 10px;
+}
+
+.main__nav .link {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 11px;
+}
+.main__nav .link.is-active {
+  color: var(--main-link-active-color);
+  border-bottom: 3px solid green;
+}
+.main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
+  display: none;
+}
+@media (min-width: 800px) {
+  .main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
+    display: inline;
+  }
+}
+
+.main__playlists h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.music__list {
+  display: grid;
+  grid-template-columns: minmax(200px, auto);
+  grid-gap: 20px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 800px) {
+  .music__list {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .music__list {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+@media (min-width: 1600px) {
+  .music__list {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+}
+
+.music__list-item {
+  padding: 10px;
+  min-height: 184px; /*250px;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  transition: opacity 0.4s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  background-image: url(https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg);
+
+}
+.music__list-item:hover {
+  opacity: 1 !important;
+}
+
+.plSel, .plSel:hover {
+    color: #05ff1f;
+    border-bottom: double;
+    cursor: default;
+}
+
+.activity {
+  grid-area: social;
+  display: none;
+  background-color: var(--activity-bg-color);
+  padding-left: 20px;
+}
+.activity h2 {
+  margin: 30px 0;
+}
+@media (min-width: 1200px) {
+  .activity {
+    display: block;
+  }
+}
+
+.footer {
+    position: fixed;
+    display: grid;
+    height: var(--footer-height);
+    grid-template-columns: 50vw 1fr 10vw;
+    bottom: 0;
+    /* grid-gap: 20px; */
+    background: var(--main-bg-color-dark);
+    /* padding: 20px 20px 100px; */
+    width: -webkit-fill-available;
+    margin: 8px 8px 0px 0px;
+}
+@media (min-width: 800px) {
+  .footer {
+    grid-template-columns: 250px 1fr 60px;
+    font-size: large;
+     /* width: 200px;*/
+  }
+}
+
+.now-playing {
+  display: flex;
+}
+
+.album__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    /* object-position: -36px -7px; */
+    border-radius: 16%;
+    margin: 10px;
+}
+
+.album__musician,
+.album__title {
+  display: block;
+}
+
+.album__info {
+    padding-top: 8px;
+    width: 100%;
+}
+
+.album__title {
+  color: var(--main-highlight-color);
+  margin-bottom: 5px;
+}
+
+.album__musician {
+  font-size: 13px;
+}
+
+i {
+  color: var(--main-font-color);
+  /*padding: 0 10px;*/
+  padding: 0px 2vw;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+i:hover {
+  color: var(--main-link-active-color);
+}
+i.fa-play-circle {
+  font-size: 21px;
+    padding: 0px 2vw;
+}
+i.fa-play-circle:hover {
+  transform: scale(1.2);
+}
+
+.player__controls {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-device-controls {
+  align-self: center;
+}
+
+.song__title, .plTitle {
+  font-size: 18px;
+  color: var(--main-highlight-color);
+  margin-bottom: 8px;
+}
+
+.song__creator {
+  font-size: 12px;
+}  
+
+.plNum, .plLength, .hide, .music-player {display: none; }
+
+ul { list-style:none; }
+
+
+
+</style>  
+
+</head>
+
+<body>
+
+<div class="wrapper">
+  <aside class="sidebar">
+    <ul class="sidebar__main-links">
+      <li>Explorar</li>
+      <li>Radio</li>
+     </ul>
+     <ul class="sidebar__music">
+       <h2 class="sidebar__header">Tu Música</h2>
+       <li>Tu mezcla diaria</li>
+       <li>Canciones</li>
+       <li>Álbumes</li>
+       <li>Artistas</li>
+       <li>Estaciones</li>
+       <li>Archivos locales</li>
+     </ul>
+     <ul class="sidebar__listas de reproducción">
+       <h2 class="sidebar__header">Listas de reproducción</h2>
+       <li>Me gusta de la radio</li>
+       <li>Indiepop</li>
+       <li>Viaje</li>
+       <li>Liberar radar</li>
+       <li>Enfoque</li>
+       <li>Ambiente de piano</li>
+       <li>Tu rebobinado de verano</li>
+       <li>Inspirar</li>
+       <li>Favoritos alternativos</li>
+    </ul>
+  </aside>
+  <main>
+    <header class="main__header">
+      <h1>Spotiday</h1>
+    </header>
+    <nav class="main__nav">
+      <a class="link is-active" href="#">Descripción</a>
+      <a class="link" href="#">Gráficos</a>
+      <a class="link" href="#">Estados de ánimo</a>
+      <a class="link" href="#">Novedades</a>
+      <a class="link" href="#">Descubrir</a>
+      <a class="link" href="#">Más</a>
+    </nav>
+    <section class="main__playlists">
+      <h2>Listas destacadas</h2>
+      <div id="plreprod"> <ul class="music__list" id="plList">  </ul> </div>
+    </section>
+  </main>
+  <aside class="activity">
+    <h2>Actividad de amigos</h2>
+    <button class="button">Buscar amigos</button>
+  </aside>
+</div>
+
+
+<div class="music-player">
+  <audio controls id="audio-player"><source src="https://musicsrc.cvattv.com.ar/L100" type="audio/mpeg"></audio>
+</div>
+
+
+
+<footer class="footer"> 
+  <div class="now-playing">
+    <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
+    <div class="album__info">
+      <span class="album__title" id="npAction">Radio FM</span>
+      <span class="album__musician" id="npTitle">The Harmonics</span>
+    </div> 
+  </div>
+
+  <div class="player__controls">
+    <div class="player__btn player__btn--medium" id="btnPrev"> 
+      <i class="fas fa-backward"></i> </div>
+    <div class="player__btn player__btn--medium blue play" id="play">
+      <i class="far fa-play-circle play-btn"></i> <i class="fas fa-pause pause-btn hide"></i> </div>
+    <div class="player__btn player__btn--medium" id="btnNext">
+      <i class="fas fa-forward"></i> </div>
+  </div>
+
+  <!--div class="play-device-controls">
+      <i class="fas fa-volume-up" onclick="muteVolume()"></i>
+  
+ class="btn-mute"
+<div id="btn-faws-volume">
+        </div>  
+
+
+</div-->
+
+<div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
+    <i id="icon-vol-up" class='fas fa-volume-up'></i>
+    <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
+</div>
+
+
+</footer>
+
+<script>
+  var currentAudio = document.getElementById("audio-player");
+    function toggleMute(){
+    var btnMute = document.querySelector('#toggleMute');
+    var volUp = document.querySelector('#icon-vol-up');
+    var volMute = document.querySelector('#icon-vol-mute');
+    if (this.currentAudio.muted == false) {
+       this.currentAudio.muted = true
+       volUp.style.display = "none"
+       volMute.style.display = "block"
+    }else{
+      this.currentAudio.muted = false
+      volMute.style.display = "none"
+      volUp.style.display = "block"
+    }
+  }
+
+</script>
+<script id="rendered-js">
+var b = document.documentElement;
+
+  jQuery(function ($) {
+  var supportsAudio = !!document.createElement('audio').canPlayType;
+if (supportsAudio) {
+
+var index = 0,
+playing = true;
+mediaPath = '',
+extension = '',
+tracks = [
+
+{ track: 1, name: "La 100 y vos", file: "https://musicsrc.cvattv.com.ar/L100" },
+{ track: 2, name: "Radio Disney", file: "https://musicsrc.cvattv.com.ar/RDIS" },
+{ track: 3, name: "Blue FM", file: "https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7AAC.aac" },
+{ track: 4, name: "Aspen FM", file: "https://mdstrm.com/audio/60a2745ff943100826374a70/icecast.audio" },
+{ track: 5, name: "Vorterix", file: "http://online.radiozero.fm:8000/;"},
+{ track: 5, name: "Urbana Play", file: "https://vmf.edge-apps.net/playlist/urbana.m3u8/play.m3u8"},
+{ track: 5, name: "FM Vale 97.5", file: "http://vale.stweb.tv:1935/vale/live/playlist.m3u8 " },
+{ track: 3, name: "Mega 98.3", file: "https://mega.stweb.tv/mega983/live/playlist.m3u8"},
+{ track: 1, name: "POP 101.5", file: "https://sa.mp3.icecast.magma.edge-access.net/sc_rad38" },
+{ track: 7, name: "Rock & Pop", file: "https://musicsrc.cvattv.com.ar/RandP" },
+{ track: 9, name: "Red Boing F!88.7", file: "https://streaming.redboing.com/radio/8020/radio.mp3" },
+{ track: 10, name: "Late FM", file: "http://streaming.radiolinksmedia.com:8252/;stream " },
+{ track: 10, name: "Radio Latina", file:"https://radiolatina.live:10992/;" },
+{ track: 11, name: "FM Pasion 102.7", file: "http://streamlky.alsolnet.com:443/fmpasion" },
+{ track: 30, name: "FM Okey", file: "http://streaming.fmokey.cl:8000/FmOkAT.mp3" },
+{ track: 14, name: "Radio Folklore", file: "http://streamlky.alsolnet.com:443/radiofolclorisimohd" },
+{ track: 15, name: "Radio Mitre", file: "https://musicsrc.cvattv.com.ar/RMIT" },
+{ track: 16, name: "Radio Nacional", file: "https://musicsrc.cvattv.com.ar/RNAC" },
+{ track: 18, name: "Radio AM720 Mza", file: "http://audio.bustream.com:8062/stream" },
+{ track: 20, name: "La Red AM910", file: "https://playerservices.streamtheworld.com/api/livestream-redirect/LA_RED_AM910AAC.aac" },
+{ track: 21, name: "CNN Radio AM950", file: "http://estudio.cnnradioargentina.com.ar:8000/stream" },
+{ track: 22, name: "Monumental 1080", file: "https://musicsrc.cvattv.com.ar/RMON" },
+{ track: 22, name: "TechnoBase FM", file: "https://listener1.mp3.tb-group.fm/tb.mp3" },
+{ track: 23, name: "HouseTime FM", file: "https://listener3.mp3.tb-group.fm/ht.mp3" },
+{ track: 25, name: "Techno 24/7", file: "http://listen.diesel.fm:9001/techno" },
+{ track: 26, name: "Trance 24/7", file: "http://listen.diesel.fm:9001/trance" },
+{ track: 24, name: "FM Kiss - Esp.", file: "http://kissfm.kissfmradio.cires21.com/kissfm.mp3" },
+{ track: 29, name: "HQ Exitos 24-7", file: "http://68.195.165.35:8000/HQExitos24-2" },
+
+
+/* Música !!! */
+
+{ track: 1, name: "Ellos", file: "https://musicsrc.cvattv.com.ar/RM11" },
+{ track: 2, name: "Ellas", file: "https://musicsrc.cvattv.com.ar/RM12" },
+{ track: 3, name: "Vivo", file: "https://musicsrc.cvattv.com.ar/RM13" },
+{ track: 4, name: "Disco", file: "https://musicsrc.cvattv.com.ar/RM14" },
+{ track: 5, name: "New Party Radio", file: "https://musicsrc.cvattv.com.ar/RM15" },
+{ track: 6, name: "Retro Mix", file: "https://musicsrc.cvattv.com.ar/RM16" },
+{ track: 7, name: "Rock Nacional", file: "https://musicsrc.cvattv.com.ar/RM17" },
+{ track: 8, name: "Grandes del Rock", file: "https://musicsrc.cvattv.com.ar/RM18" },
+{ track: 9, name: "Heavy Metal", file: "https://musicsrc.cvattv.com.ar/RM19" },
+{ track: 10, name: "Rock Alternativo", file: "https://musicsrc.cvattv.com.ar/RM20" },
+{ track: 11, name: "Teens", file: "https://musicsrc.cvattv.com.ar/RM28" },
+{ track: 12, name: "Reggaeton", file: "https://musicsrc.cvattv.com.ar/RM29" },
+{ track: 13, name: "Reggaeton Romantico", file: "https://musicsrc.cvattv.com.ar/RM30" },
+{ track: 14, name: "Latino", file: "https://musicsrc.cvattv.com.ar/RM31" },
+{ track: 15, name: "Electronica", file: "https://musicsrc.cvattv.com.ar/RM41" },
+{ track: 16, name: "Trendy", file: "https://musicsrc.cvattv.com.ar/RM42" },
+{ track: 17, name: "Top 40", file: "https://musicsrc.cvattv.com.ar/RM01" },
+{ track: 18, name: "Top Europa", file: "https://musicsrc.cvattv.com.ar/RM02" },
+{ track: 19, name: "Grandes Cantantes", file: "https://musicsrc.cvattv.com.ar/RM10" },
+{ track: 20, name: "Power Ballads", file: "https://musicsrc.cvattv.com.ar/RM21" },
+{ track: 21, name: "New Wave", file: "https://musicsrc.cvattv.com.ar/RM22" },
+{ track: 22, name: "Reggae", file: "https://musicsrc.cvattv.com.ar/RM23" },
+{ track: 23, name: "Peliculas", file: "https://musicsrc.cvattv.com.ar/RM24" },
+{ track: 24, name: "Classic Cinema", file: "https://musicsrc.cvattv.com.ar/RM25" },
+{ track: 25, name: "Romantica", file: "https://musicsrc.cvattv.com.ar/RM26" },
+{ track: 26, name: "Lentos", file: "https://musicsrc.cvattv.com.ar/RM27" },
+{ track: 27, name: "Letras y Canciones", file: "https://musicsrc.cvattv.com.ar/RM32" },
+{ track: 28, name: "Salsa", file: "https://musicsrc.cvattv.com.ar/RM33" },
+{ track: 29, name: "MPB", file: "https://musicsrc.cvattv.com.ar/RM34" },
+{ track: 30, name: "Bossa", file: "https://musicsrc.cvattv.com.ar/RM35" },
+{ track: 31, name: "Axe", file: "https://musicsrc.cvattv.com.ar/RM36" },
+{ track: 32, name: "Jazz", file: "https://musicsrc.cvattv.com.ar/RM37" },
+{ track: 33, name: "Smooth Jazz", file: "https://musicsrc.cvattv.com.ar/RM38" },
+{ track: 34, name: "Chill Out", file: "https://musicsrc.cvattv.com.ar/RM39" },
+{ track: 35, name: "Chill Africa", file: "https://musicsrc.cvattv.com.ar/RM40" },
+{ track: 36, name: "Nuevos Clasicos", file: "https://musicsrc.cvattv.com.ar/RM03" },
+{ track: 37, name: "90 Internacional", file: "https://musicsrc.cvattv.com.ar/RM04" },
+{ track: 38, name: "80/90 Internacional", file: "https://musicsrc.cvattv.com.ar/RM06" },
+{ track: 39, name: "80 Internacional", file: "https://musicsrc.cvattv.com.ar/RM05" },
+{ track: 40, name: "70 Internacional", file: "https://musicsrc.cvattv.com.ar/RM07" },
+{ track: 41, name: "60 Internacional", file: "https://musicsrc.cvattv.com.ar/RM08" },
+{ track: 42, name: "50 Internacional", file: "https://musicsrc.cvattv.com.ar/RM09" },
+{ track: 43, name: "Lounge", file: "https://musicsrc.cvattv.com.ar/RM43" },
+{ track: 44, name: "Blend", file: "https://musicsrc.cvattv.com.ar/RM44" },
+{ track: 45, name: "New Age", file: "https://musicsrc.cvattv.com.ar/RM45" },
+{ track: 46, name: "Tango", file: "https://musicsrc.cvattv.com.ar/RM46" },
+{ track: 47, name: "Tango Electronico", file: "https://musicsrc.cvattv.com.ar/RM47" },
+{ track: 48, name: "Clasica", file: "https://musicsrc.cvattv.com.ar/RM48" },
+{ track: 49, name: "Opera", file: "https://musicsrc.cvattv.com.ar/RM49" },
+{ track: 50, name: "Opera Romántica", file: "https://musicsrc.cvattv.com.ar/RM50" },
+
+
+/* 
+
+    b.setAttribute('data-useragent', navigator.userAgent);
+    b.setAttribute('data-platform', navigator.platform);
+
+
+{ track: , name: " ", file: "" }, 
+
+    buildPlaylist = $.each(tracks, function (key, value) {
+      var trackNumber = value.track,
+      trackName = value.name,
+      trackDuration = value.duration;
+      if (trackNumber.toString().length === 1) {
+        trackNumber = '0' + trackNumber;
+      }
+      $('#plList').append('<li class="music__list-item"> \
+                          <div class="plItem"> \
+                        <span class="plNum">' + trackNumber + '.</span> \
+                        <span class="plTitle">' + trackName + '</span> \
+                        <span class="plLength">' + trackDuration + '</span> \
+                    </div> \
+                </li>');
+    }),
+
+    trackCount = tracks.length,
+
+*/
+
+   
+],
+
+    buildPlaylist = $.each(tracks, function (key, value) {
+      var trackNumber = value.track,
+      trackName = value.name;
+      if (trackNumber.toString().length === 1) {
+        trackNumber = '0' + trackNumber;
+      }
+      $('#plList').append('<li class="music__list-item"> \
+                          <div class="plItem"> \
+                        <span class="plNum">' + trackNumber + '.</span> \
+                        <span class="plTitle">' + trackName + '</span> \
+                    </div> \
+                </li>');
+    }),
+
+    trackCount = tracks.length,
+    npAction = $('#npAction'),
+    npTitle = $('#npTitle'),  
+
+    audio = $('#audio-player').bind('play', function () {
+      playing = true;
+      npAction.text('Reproduciendo...');
+    }).bind('pause', function () {
+      playing = false;
+      npAction.text('Detenido...');
+    }).bind('error', function () {
+     playing = true;
+     $('.selected').next('li').trigger('click');
+     npAction.text('Reinicio...');
+    if (index + 1 < trackCount) {
+        index++;
+        loadTrack(index);
+        audio.play();
+      } else {
+        audio.pause();
+        index = 0;
+        loadTrack(index);
+      }
+    }).get(0),
+    btnPrev = $('#btnPrev').click(function () {
+      if (index - 1 > -1) {
+        index--;
+        loadTrack(index);
+        if (playing) {
+          audio.play();
+        }
+      } else {
+        audio.pause();
+        index = 0;
+        loadTrack(index);
+      }
+    }),
+    btnNext = $('#btnNext').click(function () {
+      if (index + 1 < trackCount) {
+        index++;
+        loadTrack(index);
+        if (playing) {
+          audio.play();
+        }
+      } else {
+        audio.pause();
+        index = 0;
+        loadTrack(index);
+      }
+    }),
+    li = $('#plList li').click(function () {
+      var id = parseInt($(this).index());
+      if (id !== index) {
+        playTrack(id);
+      }
+    }),
+    loadTrack = function (id) {
+      $('.plSel').removeClass('plSel');
+      $('#plList li:eq(' + id + ')').addClass('plSel');
+      npTitle.text(tracks[id].name);
+      index = id;
+//      audio.src = mediaPath + tracks[id].file;
+      audio.src = tracks[id].file;
+
+    },
+    playTrack = function (id) {
+      loadTrack(id);
+      audio.play();
+      };
+      loadTrack(index);
+      }
+    }); 
+//fin
+</script>
+
+<script>
+let audio = document.getElementById("audio-player");
+let playPause = document.getElementById("play");
+playPause.addEventListener("click", () => {
+  if (audio.paused || audio.ended) {
+    playPause.querySelector(".pause-btn").classList.toggle("hide");
+    playPause.querySelector(".play-btn").classList.toggle("hide");
+    audio.play();
+  } else {
+    audio.pause();
+    playPause.querySelector(".pause-btn").classList.toggle("hide");
+    playPause.querySelector(".play-btn").classList.toggle("hide");
+  }
+});
+
+function muteVolume() {
+    if (audio.muted)
+        audio.muted = false;
+    else
+        audio.muted = true;
+}
+
+
+// COMTROL SUPERIORES
+navigator.mediaSession.setActionHandler('play', function() {
+  audio.play();
+  navigator.mediaSession.playbackState = "playing"; });
+
+navigator.mediaSession.setActionHandler('pause', function() {
+  audio.pause();
+  navigator.mediaSession.playbackState = "paused";  });
+
+let skipTime = 10; // Time to skip in seconds
+
+navigator.mediaSession.setActionHandler('seekbackward', function() {
+  audio.currentTime = Math.max(audio.currentTime - skipTime, 0); });
+
+navigator.mediaSession.setActionHandler('seekforward', function() {
+  audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration); });
+
+navigator.mediaSession.setActionHandler('previoustrack', function() {
+  document.querySelector('#btnPrev').click()});;
+
+navigator.mediaSession.setActionHandler('nexttrack', function() {
+  document.querySelector('#btnNext').click()});;
+
+</script>
+
+<script>
+const musicLists = document.getElementsByClassName('music_8_list');
+for (let i = 0; i < musicLists.length; i++) {
+  const bgImage = `url('https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg')`;
+  musicLists[i].style.backgroundImage = `linear-gradient(
+    rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), ${bgImage}`;
+  musicLists[i].style.opacity = 0;
+    musicLists[i].style.font = 44;
+}
+</script>
+
+
+</body>
+</html>
