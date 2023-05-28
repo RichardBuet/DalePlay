@@ -159,6 +159,10 @@ h3 {
   grid-area: sidebar;
 }
 
+@media (max-aspect-ratio: 1/1),{
+  .sidebar {display: none;}
+}
+
 .sidebar li {
   line-height: 2;
 }
@@ -259,10 +263,11 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0.6;
-  transition: opacity 0.4s ease-in;
+  transition: opacity 1.0s ease-in;
   display: flex;
   align-items: center;
-  justify-content: center;
+ /* justify-content: center; */
+  padding-top: 14px;
   flex-direction: column;
   position: relative;
   cursor: pointer;
@@ -270,14 +275,18 @@ main {
 
 }
 .music__list-item:hover {
-  opacity: 1 !important;
+    opacity: 1 !important;
+    transition: opacity 0.3s ease-in;
+    color: #05ff1f;
+    border-bottom: solid;
 }
-
+  
 .plSel, .plSel:hover {
     color: #05ff1f;
     border-bottom: double;
     cursor: default;
-}
+    opacity: 1 !important;
+  }
 
 .activity {
   grid-area: social;
@@ -298,7 +307,7 @@ main {
     position: fixed;
     display: grid;
     height: var(--footer-height);
-    grid-template-columns: 50vw 1fr 10vw;
+    grid-template-columns: 50vw 1fr 12vw;
     bottom: 0;
     /* grid-gap: 20px; */
     background: var(--main-bg-color-dark);
@@ -331,11 +340,21 @@ main {
 .album__title {
   display: block;
 }
-
+/*
 .album__info {
     padding-top: 8px;
     width: 100%;
+} */
+
+.album__info {
+    padding: 12px 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 
 .album__title {
   color: var(--main-highlight-color);
@@ -380,6 +399,8 @@ i.fa-play-circle:hover {
   color: var(--main-highlight-color);
   margin-bottom: 8px;
 }
+
+
 
 .song__creator {
   font-size: 12px;
@@ -459,8 +480,8 @@ ul { list-style:none; }
   <div class="now-playing">
     <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
     <div class="album__info">
-      <span class="album__title" id="npAction">Bienvenido Spotiday</span>
-      <span class="album__musician" id="npTitle">Radio y Música online</span>
+      <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
+      <span class="album__musician" id="npAction"></span>
     </div> 
   </div>
 
@@ -479,6 +500,10 @@ ul { list-style:none; }
   </div>
 
 </footer>
+
+<script>
+  document.getElementById("npAction").innerHTML = "Radio y Música online"; 
+</script>
 
 <script>
   var currentAudio = document.getElementById("audio-player");
@@ -539,10 +564,7 @@ tracks = [
 { track: 26, name: "Trance 24/7", file: "http://listen.diesel.fm:9001/trance" },
 { track: 24, name: "FM Kiss - Esp.", file: "http://kissfm.kissfmradio.cires21.com/kissfm.mp3" },
 { track: 29, name: "HQ Exitos 24-7", file: "http://68.195.165.35:8000/HQExitos24-2" },
-
-
 /* Música !!! */
-
 { track: 1, name: "Ellos", file: "https://musicsrc.cvattv.com.ar/RM11" },
 { track: 2, name: "Ellas", file: "https://musicsrc.cvattv.com.ar/RM12" },
 { track: 3, name: "Vivo", file: "https://musicsrc.cvattv.com.ar/RM13" },
@@ -593,8 +615,7 @@ tracks = [
 { track: 48, name: "Clasica", file: "https://musicsrc.cvattv.com.ar/RM48" },
 { track: 49, name: "Opera", file: "https://musicsrc.cvattv.com.ar/RM49" },
 { track: 50, name: "Opera Romántica", file: "https://musicsrc.cvattv.com.ar/RM50" },
-
-   
+    
 ],
 
     buildPlaylist = $.each(tracks, function (key, value) {
@@ -717,8 +738,9 @@ navigator.mediaSession.setActionHandler('play', function() {
 navigator.mediaSession.setActionHandler('pause', function() {
   audio.pause();
   navigator.mediaSession.playbackState = "paused";  });
+// Time to skip in seconds let skipTime = 10; 
 
-let skipTime = 10; // Time to skip in seconds
+
 
 navigator.mediaSession.setActionHandler('seekbackward', function() {
   audio.currentTime = Math.max(audio.currentTime - skipTime, 0); });
