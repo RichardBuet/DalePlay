@@ -2,13 +2,15 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Spotiday v0.23</title>
+<title>Spotiday (Radios y Música 24/7)</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
+<meta name="description" content="Radios y Música online 24/7 en Spotiday - v0.23">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   
@@ -38,6 +40,50 @@ body {
   font-size: 14px;
   color: var(--main-font-color);
 }
+
+body {
+    
+  animation: 20s infinite bgcolorchange;
+  
+}
+@keyframes bgcolorchange {
+0% {
+    background: #b900ffc9;
+}
+
+25% {
+    background: #009aff;
+}
+50% {
+    background: #008075;
+}
+75% {
+    background: #0ba320;
+}
+100% {
+    background: #b900ffc9;
+}
+}
+@-webkit-keyframes bgcolorchange {
+
+0% {
+    background: #b900ffc9;
+}
+
+25% {
+    background: #009aff;
+}
+50% {
+    background: #008075;
+}
+75% {
+    background: #0ba320;
+}
+100% {
+    background: #b900ffc9;
+}
+}
+
 
 img {
   max-width: 100%;
@@ -413,8 +459,8 @@ ul { list-style:none; }
   <div class="now-playing">
     <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
     <div class="album__info">
-      <span class="album__title" id="npAction">Radio FM</span>
-      <span class="album__musician" id="npTitle">The Harmonics</span>
+      <span class="album__title" id="npAction">Bienvenido Spotiday</span>
+      <span class="album__musician" id="npTitle">Radio y Música online</span>
     </div> 
   </div>
 
@@ -427,21 +473,10 @@ ul { list-style:none; }
       <i class="fas fa-forward"></i> </div>
   </div>
 
-  <!--div class="play-device-controls">
-      <i class="fas fa-volume-up" onclick="muteVolume()"></i>
-  
- class="btn-mute"
-<div id="btn-faws-volume">
-        </div>  
-
-
-</div-->
-
-<div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
-    <i id="icon-vol-up" class='fas fa-volume-up'></i>
-    <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
-</div>
-
+  <div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
+      <i id="icon-vol-up" class='fas fa-volume-up'></i>
+      <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
+  </div>
 
 </footer>
 
@@ -461,8 +496,8 @@ ul { list-style:none; }
       volUp.style.display = "block"
     }
   }
-
 </script>
+
 <script id="rendered-js">
 var b = document.documentElement;
 
@@ -470,7 +505,7 @@ var b = document.documentElement;
   var supportsAudio = !!document.createElement('audio').canPlayType;
 if (supportsAudio) {
 
-var index = 0,
+var index = -1,
 playing = true;
 mediaPath = '',
 extension = '',
@@ -558,35 +593,6 @@ tracks = [
 { track: 48, name: "Clasica", file: "https://musicsrc.cvattv.com.ar/RM48" },
 { track: 49, name: "Opera", file: "https://musicsrc.cvattv.com.ar/RM49" },
 { track: 50, name: "Opera Romántica", file: "https://musicsrc.cvattv.com.ar/RM50" },
-
-
-/* 
-
-    b.setAttribute('data-useragent', navigator.userAgent);
-    b.setAttribute('data-platform', navigator.platform);
-
-
-{ track: , name: " ", file: "" }, 
-
-    buildPlaylist = $.each(tracks, function (key, value) {
-      var trackNumber = value.track,
-      trackName = value.name,
-      trackDuration = value.duration;
-      if (trackNumber.toString().length === 1) {
-        trackNumber = '0' + trackNumber;
-      }
-      $('#plList').append('<li class="music__list-item"> \
-                          <div class="plItem"> \
-                        <span class="plNum">' + trackNumber + '.</span> \
-                        <span class="plTitle">' + trackName + '</span> \
-                        <span class="plLength">' + trackDuration + '</span> \
-                    </div> \
-                </li>');
-    }),
-
-    trackCount = tracks.length,
-
-*/
 
    
 ],
