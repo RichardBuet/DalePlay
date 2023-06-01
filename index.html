@@ -12,6 +12,8 @@
 <link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
 <meta name="description" content="Radios y Música online 24/7 en Spotiday - v0.24">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <style>
   
 html {
@@ -272,8 +274,7 @@ main {
   flex-direction: column;
   position: relative;
   cursor: pointer;
-  background-image: url(https://raw.githubusercontent.com/RichardBuet/audioplay/main/muzyka-fon-electric-guitar_1685363603105.jpg);
-  /*background-image: url(https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg);*/
+  background-image: url(https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg);
 
 }
 .music__list-item:hover {
@@ -319,7 +320,8 @@ main {
 }
 @media (min-width: 800px) {
   .footer {
-    grid-template-columns: 250px 1fr 60px;
+    /*grid-template-columns: 250px 1fr 60px;*/
+    grid-template-columns: 300px auto 80px;
     font-size: large;
      /* width: 200px;*/
   }
@@ -441,16 +443,26 @@ main {
 }
 }
 
+
+.album__musician0 {
+  width: 20px;
+  height: 20px;
+  background: black;
+  position: relative;
+  border-radius: 50%;
+}
+
 </style>  
 
 </head>
 
-<body>
+<body onclick="getinnerText()">
+
 
 <div class="wrapper">
   <aside class="sidebar">
     <ul class="sidebar__main-links">
-      <li>Explorar</li>
+      <li id="destino" >Explorar</li>
       <li>Radio</li>
      </ul>
      <ul class="sidebar__music">
@@ -494,7 +506,7 @@ main {
   </main>
   <aside class="activity">
     <h2>Actividad de amigos</h2>
-    <button class="button">Buscar amigos</button>
+    <button  onclick="copiarTexto()" class="button">Buscar amigos</button>
   </aside>
 </div>
 
@@ -510,6 +522,7 @@ main {
     <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
     <div class="album__info">
       <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
+      <span class="album__musician0" id="npTitle0"></span>
       <span class="album__musician" id="npAction"></span>
     </div> 
   </div>
@@ -663,8 +676,7 @@ tracks = [
 
     trackCount = tracks.length,
     npAction = $('#npAction'),
-    npTitle = $('#npTitle'),  
-
+    npTitle = $('#npTitle'),
     audio = $('#audio-player').bind('play', function () {
       playing = true;
       npAction.text('Reproduciendo...');
@@ -714,7 +726,7 @@ tracks = [
     li = $('#plList li').click(function () {
       var id = parseInt($(this).index());
       if (id !== index) {
-        playTrack(id);
+        playTrack(id);     
       }
     }),
     loadTrack = function (id) {
@@ -722,9 +734,7 @@ tracks = [
       $('#plList li:eq(' + id + ')').addClass('plSel');
       npTitle.text(tracks[id].name);
       index = id;
-//      audio.src = mediaPath + tracks[id].file;
       audio.src = tracks[id].file;
-
     },
     playTrack = function (id) {
       loadTrack(id);
@@ -797,5 +807,76 @@ for (let i = 0; i < musicLists.length; i++) {
 </script>
 
 
+<!--script>
+function getinnerText() {
+  var text = document.getElementById("npTitle").innerText;
+  document.title = text;
+}
+</script-->
+
+<script>
+  // Selecciona el elemento <span> al que deseas hacerle un seguimiento de cambios
+const spanElement = document.querySelector('.album__title');
+
+// Crea una nueva instancia de MutationObserver y proporciona una función de devolución de llamada
+const observer = new MutationObserver(function(mutationsList) {
+  // La función de devolución de llamada se ejecutará cada vez que haya una mutación
+  for(let mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      // Aquí puedes poner tu código JavaScript que deseas ejecutar cuando haya un cambio en el <span>
+        var text = document.getElementById("npTitle").innerText;
+  document.title = text + "  -  Spotiday";
+      console.log('¡El contenido del span ha cambiado!');
+      // Ejecuta tu función o código aquí
+
+
+// Selecciona el elemento por su ID
+const element = document.getElementById('npTitle0');
+
+// Selecciona el <span> por su ID
+const span = document.getElementById('npAction');
+
+// Función para cambiar el color de fondo
+function cambiarColorFondo(color) {
+  element.style.backgroundColor = color;
+}
+
+// Función para verificar el texto del <span> y cambiar el color de fondo en consecuencia
+function verificarTextoSpan() {
+  if (span.textContent === 'Reproduciendo...') {
+    cambiarColorFondo('#01b701');
+  } else if (span.textContent === 'Detenido...') {
+    cambiarColorFondo('#e43535');
+  }
+}
+
+// Verificar el texto del <span> inicialmente
+verificarTextoSpan();
+
+// Observar cambios en el texto del <span> utilizando MutationObserver
+const observer = new MutationObserver(function(mutationsList) {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'childList' && mutation.target === span) {
+      verificarTextoSpan();
+    }
+  }
+});
+
+observer.observe(span, { childList: true });
+
+
+    }
+  }
+});
+
+// Configura la observación para detectar cambios en el contenido del <span>
+observer.observe(spanElement, { childList: true });
+
+// Ejemplo de cambio en el contenido del <span>
+setTimeout(function() {
+//  spanElement.textContent = 'Bienvenido';
+}, 5000);
+
+</script>
 </body>
 </html>
