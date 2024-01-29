@@ -15,7 +15,35 @@
 
 
 <style>
-  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+    font-size: 14px;
+    color: var(--main-font-color);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: var(--main-bg-color);
+  }
+
+  main {
+    flex: 1;
+    overflow-y: hidden; /* Desactiva el desplazamiento vertical en el elemento main */
+  }
+
+  /* Resto de tus estilos aquí */
+
+
 html {
   --main-bg-color: #0e0e0e;
   --main-font-color: #b9b5b5;
@@ -31,62 +59,7 @@ html {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: "Lato", Arial, sans-serif;
-  line-height: 1.4;
-  font-size: 14px;
-  color: var(--main-font-color);
-}
-
-body {
-    
-  animation: 20s infinite bgcolorchange;
-  
-}
-@keyframes bgcolorchange {
-0% {
-    background: #b900ffc9;
-}
-
-25% {
-    background: #009aff;
-}
-50% {
-    background: #008075;
-}
-75% {
-    background: #0ba320;
-}
-100% {
-    background: #b900ffc9;
-}
-}
-@-webkit-keyframes bgcolorchange {
-
-0% {
-    background: #b900ffc9;
-}
-
-25% {
-    background: #009aff;
-}
-50% {
-    background: #008075;
-}
-75% {
-    background: #0ba320;
-}
-100% {
-    background: #b900ffc9;
-}
-}
-
-
+h1, h2 {margin-left: 10px;}
 img {
   max-width: 100%;
   height: auto;
@@ -96,13 +69,18 @@ ul {
   list-style-type: none;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 400;
-  margin: 0;
-  color: var(--main-highlight-color);
-}
+
+/* Highlight Styles 
+::selection { background-color:#262223; color:#444; }
+::-moz-selection { background-color:#262223; color:#444; } */
+
+/* Works on Firefox */
+* { scrollbar-width: thin; scrollbar-color: #065fd442 #065fd49e; }
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {  width: 1.5vw; }
+*::-webkit-scrollbar-track { background: rgb(0 0 0 / 0%); }
+*::-webkit-scrollbar-thumb { background-color: #065fd442; border-radius: 3vw; border: 2px solid #065fd49e; }
 
 .button {
   padding: 15px 10px;
@@ -135,65 +113,12 @@ h3 {
   color: var(--main-link-active-color);
 }
 
-.wrapper {
-  display: grid;
-  background: var(--main-bg-color);
-  grid-gap: 10px;
-  min-height: 100vh;
-  grid-template-columns: 100%;
-  grid-template-areas: "main" "sidebar";
-}
-@media (min-width: 800px) {
-  .wrapper {
-    grid-template-columns: 0px auto; /*200px auto; */
-    grid-template-areas: "sidebar main";
-  }
-}
-@media (min-width: 1001px) {
-  .wrapper {
-    grid-template-columns: 200px auto 200px;
-    grid-template-areas: "sidebar main social";
-  }
-}
-
-.sidebar {
-  background: var(--activity-bg-color);
-  grid-area: sidebar;
-}
-
-@media (max-aspect-ratio: 1/1),{
-  .sidebar {display: none;}
-}
-
-.sidebar li {
-  line-height: 2;
-}
-
-.sidebar__header {
-  margin-bottom: 5px;
-}
-
-.sidebar__header {
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 1.2px;
-}
-
-main {
-  grid-area: main;
-  padding: 10px 20px;
-}
-@media (min-width: 800px) {
-  main {
-    padding: 10px 20px calc(var(--footer-height) + 40px);
-    margin-bottom: 20px;
-  }
-}
 
 .main__header h1 {
   margin-bottom: 20px;
   font-size: 38px;
+  font-weight: 400;
+  color: lawngreen;
 }
 
 .main__nav {
@@ -221,63 +146,51 @@ main {
 .main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
   display: none;
 }
-@media (min-width: 800px) {
-  .main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
-    display: inline;
-  }
-}
+.main__nav {  display: none;}
 
 .main__playlists h2 {
   font-size: 20px;
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--main-border-color);
+  margin-right: 10px;
+    color: var(--main-link-active-color);
+  border-bottom: 3px solid green;
 }
 
+
+
 .music__list {
-  display: grid;
-/*  grid-template-columns: minmax(200px, auto); */
-  grid-template-columns: 48% 48%;
-  grid-gap: 20px;
-  width: 100%;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-@media (min-width: 800px) {
-  .music__list {
-    grid-template-columns: repeat(2, minmax(250px, 1fr));
-  }
-}
-@media (min-width: 1001px) {
-  .music__list {
-    grid-template-columns: repeat(3, minmax(250px, 1fr));
-  }
-}
-@media (min-width: 1600px) {
-  .music__list {
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-  }
+    display: flex;
+    grid-gap: 1rem;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+    align-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .music__list-item {
-  padding: 10px;
-  min-height: 184px; /*250px;*/
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-  transition: opacity 1.0s ease-in;
-  display: flex;
-  align-items: center;
- /* justify-content: center; */
-  padding-top: 14px;
-  flex-direction: column;
-  position: relative;
-  cursor: pointer;
-  background-image: url(https://img.freepik.com/free-vector/glowing-shiny-musical-notes-background-design_1017-32856.jpg);
-/*  background-image: url(https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg);*/
-
+    padding: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    transition: opacity 1.0s ease-in;
+    display: flex;
+    width: 40vw;
+    height: calc(40vw * 0.75);
+    padding-top: 14px;
+    position: relative;
+    cursor: pointer;
+    background-image: url(https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg);
+    align-items: flex-end;
+    justify-content: center;
 }
+
+
 .music__list-item:hover {
     opacity: 1 !important;
     transition: opacity 0.3s ease-in;
@@ -301,32 +214,19 @@ main {
 .activity h2 {
   margin: 30px 0;
 }
-@media (min-width: 1001px) {
-  .activity {
-    display: block;
-  }
-}
+
 
 .footer {
     position: fixed;
     display: grid;
     height: var(--footer-height);
     grid-template-columns: 50vw 1fr 12vw;
-    bottom: 0;
-    /* grid-gap: 20px; */
+    bottom: 8px;
     background: var(--main-bg-color-dark);
-    /* padding: 20px 20px 100px; */
     width: -webkit-fill-available;
-    margin: 8px 8px 0px 0px;
+    margin: 8px 8px 0px 8px;
 }
-@media (min-width: 800px) {
-  .footer {
-    /*grid-template-columns: 250px 1fr 60px;*/
-    grid-template-columns: 300px auto 80px;
-    font-size: large;
-     /* width: 200px;*/
-  }
-}
+
 
 .now-playing {
   display: flex;
@@ -336,7 +236,6 @@ main {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    /* object-position: -36px -7px; */
     border-radius: 16%;
     margin: 10px;
 }
@@ -345,11 +244,6 @@ main {
 .album__title {
   display: block;
 }
-/*
-.album__info {
-    padding-top: 8px;
-    width: 100%;
-} */
 
 .album__info {
     padding: 12px 0;
@@ -363,11 +257,18 @@ main {
 
 .album__title {
   color: var(--main-highlight-color);
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  font-size: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .album__musician {
-  font-size: 13px;
+ font-size: 1.0em; /* 13px;*/
+   text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 i {
@@ -382,11 +283,21 @@ i:hover {
   color: var(--main-link-active-color);
 }
 i.fa-play-circle {
-  font-size: 21px;
+  font-size: 2.5em;
     padding: 0px 2vw;
 }
 i.fa-play-circle:hover {
   transform: scale(1.2);
+}
+
+.fa, .far, .fas {
+    font-family: Font Awesome\ 5 Free;
+    font-size: 1.5em;
+}
+
+.fa-braille:before {
+    content: "\f2a1";
+    font-size: 0.7em;
 }
 
 .player__controls {
@@ -395,9 +306,7 @@ i.fa-play-circle:hover {
     justify-content: center;
 }
 
-.play-device-controls {
-  align-self: center;
-}
+.play-device-controls { align-self: center;}
 
 .song__title, .plTitle {
   font-size: 18px;
@@ -406,46 +315,13 @@ i.fa-play-circle:hover {
 }
 
 
-
-.song__creator {
-  font-size: 12px;
-}  
+.song__creator { font-size: 12px;}  
 
 .plNum, .plLength, .hide, .music-player {display: none; }
 
 ul { list-style:none; }
 
-@media  (max-aspect-ratio: 1/1.2),{
-  .music__list-item {
-    padding: 0px;
-    min-height: 30vw;
-  }
-
-  .music__list {
-    display: grid;
-    grid-template-columns: 48% 48%;
-    grid-gap: 5px;
-  }
-}
-
-@media (orientation: landscape),{
-.wrapper {
-    display: flex;}
-main {
-    grid-area: main;
-    width: 80vw;
-}
-.main__nav {
-    display: none;
-}
-.main__playlists h2 {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-}
-
-
-.album__musician0 {
+.album__musician0{
   width: 20px;
   height: 20px;
   background: black;
@@ -453,7 +329,29 @@ main {
   border-radius: 50%;
 }
 
-</style>  
+
+@media  (min-aspect-ratio: 1),{
+.music__list-item {
+    width: 25vw;
+    height: calc(25vw * 0.75);
+  }
+}
+
+@media  (min-aspect-ratio: 1.3),{
+.music__list-item {
+    width: 20vw;
+    height: calc(20vw * 0.75);
+  }
+}
+
+@media  (min-aspect-ratio: 1.8),{
+.music__list-item {
+    width: 20vw;
+    height: calc(20vw * 0.75);
+  }
+}
+
+</style>
 
 </head>
 
@@ -461,43 +359,12 @@ main {
 
 
 <div class="wrapper">
-  <aside class="sidebar">
-    <ul class="sidebar__main-links">
-      <li id="destino" >Explorar</li>
-      <li>Radio</li>
-     </ul>
-     <ul class="sidebar__music">
-       <h2 class="sidebar__header">Tu Música</h2>
-       <li>Tu mezcla diaria</li>
-       <li>Canciones</li>
-       <li>Álbumes</li>
-       <li>Artistas</li>
-       <li>Estaciones</li>
-       <li>Archivos locales</li>
-     </ul>
-     <ul class="sidebar__listas de reproducción">
-       <h2 class="sidebar__header">Listas de reproducción</h2>
-       <li>Me gusta de la radio</li>
-       <li>Indiepop</li>
-       <li>Viaje</li>
-       <li>Liberar radar</li>
-       <li>Enfoque</li>
-       <li>Ambiente de piano</li>
-       <li>Tu rebobinado de verano</li>
-       <li>Inspirar</li>
-       <li>Favoritos alternativos</li>
-    </ul>
-  </aside>
   <main>
     <header class="main__header">
       <h1>Spotiday</h1>
     </header>
     <nav class="main__nav">
       <a class="link is-active" href="#">Descripción</a>
-      <a class="link" href="#">Gráficos</a>
-      <a class="link" href="#">Estados de ánimo</a>
-      <a class="link" href="#">Novedades</a>
-      <a class="link" href="#">Descubrir</a>
       <a class="link" href="#">Más</a>
     </nav>
     <section class="main__playlists">
@@ -505,44 +372,41 @@ main {
       <div id="plreprod"> <ul class="music__list" id="plList">  </ul> </div>
     </section>
   </main>
-  <aside class="activity">
-    <h2>Actividad de amigos</h2>
-    <button  onclick="copiarTexto()" class="button">Buscar amigos</button>
-  </aside>
-</div>
-
-
-<div class="music-player">
-  <audio controls id="audio-player"><source src="https://musicsrc.cvattv.com.ar/L100" type="audio/mpeg"></audio>
-</div>
 
 
 
-<footer class="footer"> 
-  <div class="now-playing">
-    <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
-    <div class="album__info">
-      <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
-      <span class="album__musician0" id="npTitle0"></span>
-      <span class="album__musician" id="npAction"></span>
-    </div> 
+  <div class="music-player">
+    <audio controls id="audio-player"><source src="https://musicsrc.cvattv.com.ar/L100" type="audio/mpeg"></audio>
   </div>
 
-  <div class="player__controls">
-    <div class="player__btn player__btn--medium" id="btnPrev"> 
-      <i class="fas fa-backward"></i> </div>
-    <div class="player__btn player__btn--medium blue play" id="play">
-      <i class="far fa-play-circle play-btn"></i> <i class="fas fa-pause pause-btn hide"></i> </div>
-    <div class="player__btn player__btn--medium" id="btnNext">
-      <i class="fas fa-forward"></i> </div>
-  </div>
 
-  <div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
+  <footer class="footer"> 
+    <div class="now-playing">
+      <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
+      <div class="album__info">
+        <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
+        <span class="album__musician0" id="npTitle0"></span>
+        <span class="album__musician" id="npAction"></span>
+      </div> 
+    </div>
+
+    <div class="player__controls">
+      <div class="player__btn player__btn--medium" id="btnPrev"> 
+        <i class="fas fa-backward"></i> </div>
+      <div class="player__btn player__btn--medium blue play" id="play">
+        <i class="far fa-play-circle play-btn"></i> <i class="fas fa-pause pause-btn hide"></i> </div>
+      <div class="player__btn player__btn--medium" id="btnNext">
+        <i class="fas fa-forward"></i> </div>
+    </div>
+
+    <div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
       <i id="icon-vol-up" class='fas fa-volume-up'></i>
       <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
-  </div>
+    </div>
+  </footer>
+</div>
 
-</footer>
+
 
 <script>
   document.getElementById("npAction").innerHTML = "Radio y Música online"; 
@@ -550,14 +414,14 @@ main {
 
 <script>
   var currentAudio = document.getElementById("audio-player");
-    function toggleMute(){
+  function toggleMute(){
     var btnMute = document.querySelector('#toggleMute');
     var volUp = document.querySelector('#icon-vol-up');
     var volMute = document.querySelector('#icon-vol-mute');
     if (this.currentAudio.muted == false) {
-       this.currentAudio.muted = true
-       volUp.style.display = "none"
-       volMute.style.display = "block"
+      this.currentAudio.muted = true
+      volUp.style.display = "none"
+      volMute.style.display = "block"
     }else{
       this.currentAudio.muted = false
       volMute.style.display = "none"
@@ -567,17 +431,17 @@ main {
 </script>
 
 <script id="rendered-js">
-var b = document.documentElement;
+  var b = document.documentElement;
 
   jQuery(function ($) {
-  var supportsAudio = !!document.createElement('audio').canPlayType;
-if (supportsAudio) {
+    var supportsAudio = !!document.createElement('audio').canPlayType;
+    if (supportsAudio) {
 
-var index = -1,
-playing = true;
-mediaPath = '',
-extension = '',
-tracks = [
+      var index = -1,
+      playing = true;
+      mediaPath = '',
+      extension = '',
+      tracks = [
 
 { track: 1, name: "La 100 y vos", file: "https://musicsrc.cvattv.com.ar/L100" },
 { track: 2, name: "Radio Disney", file: "https://musicsrc.cvattv.com.ar/RDIS" },
@@ -661,223 +525,219 @@ tracks = [
     
 ],
 
-    buildPlaylist = $.each(tracks, function (key, value) {
-      var trackNumber = value.track,
-      trackName = value.name;
-      if (trackNumber.toString().length === 1) {
-        trackNumber = '0' + trackNumber;
-      }
-      $('#plList').append('<li class="music__list-item"> \
-                          <div class="plItem"> \
-                        <span class="plNum">' + trackNumber + '.</span> \
-                        <span class="plTitle">' + trackName + '</span> \
-                    </div> \
-                </li>');
-    }),
+buildPlaylist = $.each(tracks, function (key, value) {
+  var trackNumber = value.track,
+  trackName = value.name;
+  if (trackNumber.toString().length === 1) {
+    trackNumber = '0' + trackNumber;
+  }
+  $('#plList').append('<li class="music__list-item"> \
+    <div class="plItem"> \
+    <span class="plNum">' + trackNumber + '.</span> \
+    <span class="plTitle">' + trackName + '</span> \
+    </div> \
+    </li>');
+}),
 
-    trackCount = tracks.length,
-    npAction = $('#npAction'),
-    npTitle = $('#npTitle'),
-    audio = $('#audio-player').bind('play', function () {
-      playing = true;
-      npAction.text('Reproduciendo...');
-    }).bind('pause', function () {
-      playing = false;
-      npAction.text('Detenido...');
-    }).bind('error', function () {
-     playing = true;
-     $('.selected').next('li').trigger('click');
-     npAction.text('Reinicio...');
-    if (index + 1 < trackCount) {
-        index++;
-        loadTrack(index);
-        audio.play();
-      } else {
-        audio.pause();
-        index = 0;
-        loadTrack(index);
-      }
-    }).get(0),
-    btnPrev = $('#btnPrev').click(function () {
-      if (index - 1 > -1) {
-        index--;
-        loadTrack(index);
-        if (playing) {
-          audio.play();
-        }
-      } else {
-        audio.pause();
-        index = 0;
-        loadTrack(index);
-      }
-    }),
-    btnNext = $('#btnNext').click(function () {
-      if (index + 1 < trackCount) {
-        index++;
-        loadTrack(index);
-        if (playing) {
-          audio.play();
-        }
-      } else {
-        audio.pause();
-        index = 0;
-        loadTrack(index);
-      }
-    }),
-    li = $('#plList li').click(function () {
-      var id = parseInt($(this).index());
-      if (id !== index) {
-        playTrack(id);     
-      }
-    }),
-    loadTrack = function (id) {
-      $('.plSel').removeClass('plSel');
-      $('#plList li:eq(' + id + ')').addClass('plSel');
-      npTitle.text(tracks[id].name);
-      index = id;
-      audio.src = tracks[id].file;
-    },
-    playTrack = function (id) {
-      loadTrack(id);
+trackCount = tracks.length,
+npAction = $('#npAction'),
+npTitle = $('#npTitle'),
+audio = $('#audio-player').bind('play', function () {
+  playing = true;
+  npAction.text('Reproduciendo...');
+}).bind('pause', function () {
+  playing = false;
+  npAction.text('Detenido...');
+}).bind('error', function () {
+  playing = true;
+  $('.selected').next('li').trigger('click');
+  npAction.text('Reinicio...');
+  if (index + 1 < trackCount) {
+    index++;
+    loadTrack(index);
+    audio.play();
+  } else {
+    audio.pause();
+    index = 0;
+    loadTrack(index);
+  }
+}).get(0),
+btnPrev = $('#btnPrev').click(function () {
+  if (index - 1 > -1) {
+    index--;
+    loadTrack(index);
+    if (playing) {
       audio.play();
-      };
-      loadTrack(index);
-      }
-    }); 
+    }
+  } else {
+    audio.pause();
+    index = 0;
+    loadTrack(index);
+  }
+}),
+btnNext = $('#btnNext').click(function () {
+  if (index + 1 < trackCount) {
+    index++;
+    loadTrack(index);
+    if (playing) {
+      audio.play();
+    }
+  } else {
+    audio.pause();
+    index = 0;
+    loadTrack(index);
+  }
+}),
+li = $('#plList li').click(function () {
+  var id = parseInt($(this).index());
+  if (id !== index) {
+    playTrack(id);     
+  }
+}),
+loadTrack = function (id) {
+  $('.plSel').removeClass('plSel');
+  $('#plList li:eq(' + id + ')').addClass('plSel');
+  npTitle.text(tracks[id].name);
+  index = id;
+  audio.src = tracks[id].file;
+},
+playTrack = function (id) {
+  loadTrack(id);
+  audio.play();
+};
+loadTrack(index);
+}
+}); 
 //fin
 </script>
 
 <script>
-let audio = document.getElementById("audio-player");
-let playPause = document.getElementById("play");
-playPause.addEventListener("click", () => {
-  if (audio.paused || audio.ended) {
-    playPause.querySelector(".pause-btn").classList.toggle("hide");
-    playPause.querySelector(".play-btn").classList.toggle("hide");
-    audio.play();
-  } else {
-    audio.pause();
-    playPause.querySelector(".pause-btn").classList.toggle("hide");
-    playPause.querySelector(".play-btn").classList.toggle("hide");
-  }
-});
+  let audio = document.getElementById("audio-player");
+  let playPause = document.getElementById("play");
+  playPause.addEventListener("click", () => {
+    if (audio.paused || audio.ended) {
+      playPause.querySelector(".pause-btn").classList.toggle("hide");
+      playPause.querySelector(".play-btn").classList.toggle("hide");
+      audio.play();
+    } else {
+      audio.pause();
+      playPause.querySelector(".pause-btn").classList.toggle("hide");
+      playPause.querySelector(".play-btn").classList.toggle("hide");
+    }
+  });
 
-function muteVolume() {
+  function muteVolume() {
     if (audio.muted)
-        audio.muted = false;
+      audio.muted = false;
     else
-        audio.muted = true;
-}
-
+      audio.muted = true;
+  }
 
 // COMTROL SUPERIORES
-navigator.mediaSession.setActionHandler('play', function() {
-  audio.play();
-  navigator.mediaSession.playbackState = "playing"; });
+  navigator.mediaSession.setActionHandler('play', function() {
+    audio.play();
+    navigator.mediaSession.playbackState = "playing"; });
 
-navigator.mediaSession.setActionHandler('pause', function() {
-  audio.pause();
-  navigator.mediaSession.playbackState = "paused";  });
+  navigator.mediaSession.setActionHandler('pause', function() {
+    audio.pause();
+    navigator.mediaSession.playbackState = "paused";  });
 // Time to skip in seconds let skipTime = 10; 
 
+  navigator.mediaSession.setActionHandler('seekbackward', function() {
+    audio.currentTime = Math.max(audio.currentTime - skipTime, 0); });
 
+  navigator.mediaSession.setActionHandler('seekforward', function() {
+    audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration); });
 
-navigator.mediaSession.setActionHandler('seekbackward', function() {
-  audio.currentTime = Math.max(audio.currentTime - skipTime, 0); });
+  navigator.mediaSession.setActionHandler('previoustrack', function() {
+    document.querySelector('#btnPrev').click()});;
 
-navigator.mediaSession.setActionHandler('seekforward', function() {
-  audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration); });
-
-navigator.mediaSession.setActionHandler('previoustrack', function() {
-  document.querySelector('#btnPrev').click()});;
-
-navigator.mediaSession.setActionHandler('nexttrack', function() {
-  document.querySelector('#btnNext').click()});;
-
+  navigator.mediaSession.setActionHandler('nexttrack', function() {
+    document.querySelector('#btnNext').click()});;
 </script>
 
 <script>
-const musicLists = document.getElementsByClassName('music_8_list');
-for (let i = 0; i < musicLists.length; i++) {
-  const bgImage = `url('https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg')`;
-  musicLists[i].style.backgroundImage = `linear-gradient(
+  const musicLists = document.getElementsByClassName('music_8_list');
+  for (let i = 0; i < musicLists.length; i++) {
+    const bgImage = `url('https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg')`;
+    musicLists[i].style.backgroundImage = `linear-gradient(
     rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), ${bgImage}`;
-  musicLists[i].style.opacity = 0;
+    musicLists[i].style.opacity = 0;
     musicLists[i].style.font = 44;
-}
+  }
 </script>
 
 
-<!--script>
-function getinnerText() {
-  var text = document.getElementById("npTitle").innerText;
-  document.title = text;
-}
-</script-->
 
 <script>
-  // Selecciona el elemento <span> al que deseas hacerle un seguimiento de cambios
-const spanElement = document.querySelector('.album__title');
+// Selecciona el elemento <span> al que deseas hacerle un seguimiento de cambios
+  const spanElement = document.querySelector('.album__title');
 
 // Crea una nueva instancia de MutationObserver y proporciona una función de devolución de llamada
-const observer = new MutationObserver(function(mutationsList) {
-  // La función de devolución de llamada se ejecutará cada vez que haya una mutación
-  for(let mutation of mutationsList) {
-    if (mutation.type === 'childList') {
-      // Aquí puedes poner tu código JavaScript que deseas ejecutar cuando haya un cambio en el <span>
+  const observer = new MutationObserver(function(mutationsList) {
+// La función de devolución de llamada se ejecutará cada vez que haya una mutación
+    for(let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+// Aquí puedes poner tu código JavaScript que deseas ejecutar cuando haya un cambio en el <span>
         var text = document.getElementById("npTitle").innerText;
-  document.title = text + "  -  Spotiday";
-      console.log('¡El contenido del span ha cambiado!');
-      // Ejecuta tu función o código aquí
+        document.title = text + "  -  Spotiday";
+        console.log('¡El contenido del span ha cambiado!');
+// Ejecuta tu función o código aquí
 
 
 // Selecciona el elemento por su ID
-const element = document.getElementById('npTitle0');
+        const element = document.getElementById('npTitle0');
 
 // Selecciona el <span> por su ID
-const span = document.getElementById('npAction');
+        const span = document.getElementById('npAction');
 
 // Función para cambiar el color de fondo
-function cambiarColorFondo(color) {
-  element.style.backgroundColor = color;
-}
+        function cambiarColorFondo(color) {
+          element.style.backgroundColor = color;
+        }
 
 // Función para verificar el texto del <span> y cambiar el color de fondo en consecuencia
-function verificarTextoSpan() {
-  if (span.textContent === 'Reproduciendo...') {
-    cambiarColorFondo('#01b701');
-  } else if (span.textContent === 'Detenido...') {
-    cambiarColorFondo('#e43535');
-  }
-}
+        function verificarTextoSpan() {
+          if (span.textContent === 'Reproduciendo...') {
+            cambiarColorFondo('#01b701');
+          } else if (span.textContent === 'Detenido...') {
+            cambiarColorFondo('#e43535');
+          }
+        }
 
 // Verificar el texto del <span> inicialmente
-verificarTextoSpan();
+        verificarTextoSpan();
 
 // Observar cambios en el texto del <span> utilizando MutationObserver
-const observer = new MutationObserver(function(mutationsList) {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'childList' && mutation.target === span) {
-      verificarTextoSpan();
+        const observer = new MutationObserver(function(mutationsList) {
+          for (let mutation of mutationsList) {
+            if (mutation.type === 'childList' && mutation.target === span) {
+              verificarTextoSpan();
+            }
+          }
+        });
+
+        observer.observe(span, { childList: true });
+
+      }
     }
-  }
-});
-
-observer.observe(span, { childList: true });
-
-
-    }
-  }
-});
+  });
 
 // Configura la observación para detectar cambios en el contenido del <span>
-observer.observe(spanElement, { childList: true });
+  observer.observe(spanElement, { childList: true });
 
 // Ejemplo de cambio en el contenido del <span>
-setTimeout(function() {
+  setTimeout(function() {
 //  spanElement.textContent = 'Bienvenido';
-}, 5000);
+  }, 5000);
 
 </script>
+  
+<script>
+    setInterval(function() {
+        document.getElementById('plreprod').click();
+    }, 60000); // 180000 milisegundos = 3 minutos/3
+</script>
+
 </body>
 </html>
