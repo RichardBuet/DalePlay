@@ -77,7 +77,7 @@ ul {
 ::-moz-selection { background-color:#262223; color:#444; } */
 
 /* Works on Firefox */
-* { scrollbar-width: thin; scrollbar-color: #065fd442 #065fd49e; }
+* { scrollbar-width: none; scrollbar-color: #065fd442 #065fd49e; }
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {  width: 1.5vw; }
@@ -174,7 +174,7 @@ ul {
     padding: 0;
     margin: 0;
     max-height: calc(100vh - 260px);
-    overflow-y: hidden;
+    overflow-y: auto;
     align-items: start;
     flex-direction: row;
     flex-wrap: wrap;
@@ -421,7 +421,7 @@ ul { list-style:none; }
 
 
 <script>
-  document.getElementById("npAction").innerHTML = "Radio y Música online"; 
+  document.getElementById("npAction").innerHTML = "Playlist de Música por estilo"; 
 </script>
 
 <script>
