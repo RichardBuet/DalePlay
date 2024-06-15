@@ -361,6 +361,43 @@ ul { list-style:none; }
   }
 }
 
+  
+.controls {
+    width: 94%;
+    margin-top: 5px;
+    position: absolute;
+    padding-left: 55vw;
+}
+
+input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #007BFF;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #007BFF;
+    cursor: pointer;
+}
+
+  
 </style>
 
 </head>
@@ -392,6 +429,8 @@ ul { list-style:none; }
 
 
   <footer class="footer"> 
+        <div class="controls"> <input type="range" id="progress" value="0" max="100">  </div>
+
     <div class="now-playing">
       <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
       <div class="album__info">
@@ -567,6 +606,7 @@ loadTrack(index);
 <script>
   let audio = document.getElementById("audio-player");
   let playPause = document.getElementById("play");
+   const progress = document.getElementById('progress');
   playPause.addEventListener("click", () => {
     if (audio.paused || audio.ended) {
       playPause.querySelector(".pause-btn").classList.toggle("hide");
@@ -579,6 +619,20 @@ loadTrack(index);
     }
   });
 
+    audio.addEventListener('timeupdate', () => {
+    const duration = audio.duration;
+    if (duration > 0) {
+        progress.value = (audio.currentTime / duration) * 100;
+    }
+});
+
+progress.addEventListener('input', () => {
+    const duration = audio.duration;
+    if (duration > 0) {
+        audio.currentTime = (progress.value / 100) * duration;
+    }
+});
+  
   function muteVolume() {
     if (audio.muted)
       audio.muted = false;
