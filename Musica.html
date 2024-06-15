@@ -1,9 +1,8 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Spotiday (Radios y Música 24/7)</title>
+<title>Spotiday - Música</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -11,16 +10,358 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
-<link rel="stylesheet" href="https://raw.githubusercontent.com/RichardBuet/Spotiday/main/css/style.css">
+<!-- <link rel="stylesheet" href="https://raw.githubusercontent.com/RichardBuet/Spotiday/main/css/style.css"> -->
 <meta name="description" content="Radios y Música online 24/7 en Spotiday - v0.24">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<!-- <style>
-.music__list-item {
-    background-image: url(https://img.pikbest.com/wp/202347/lit-neon-close-up-of-headphones-on-black-background-rendered-in-3d_9756571.jpg!w700wp);
+<style>
+/* Estilo global */
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+    font-size: 14px;
+    color: var(--main-font-color);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: var(--main-bg-color);
+  }
+
+  main {
+    flex: 1;
+    overflow-y: hidden; /* Desactiva el desplazamiento vertical en el elemento main */
+  }
+
+  /* Resto de tus estilos aquí */
+
+
+html {
+  --main-bg-color: #0e0e0e;
+  --main-font-color: #b9b5b5;
+  --main-highlight-color: #fff;
+  --main-link-active-color: hsl(202, 90%, 43%);
+  --main-link-border-bottom: green;
+  --main-border-color: #8080804d;
+  --activity-bg-color: #000;
+  --footer-height: 100px;
+  --main-bg-color-dark: #202020;
 }
-</style> -->
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2 {margin-left: 10px;}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+/* Highlight Styles 
+::selection { background-color:#262223; color:#444; }
+::-moz-selection { background-color:#262223; color:#444; } */
+
+/* Works on Firefox */
+* { scrollbar-width: none; scrollbar-color: #065fd442 #065fd49e; }
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {  width: 1.5vw; }
+*::-webkit-scrollbar-track { background: rgb(0 0 0 / 0%); }
+*::-webkit-scrollbar-thumb { background-color: #065fd442; border-radius: 3vw; border: 2px solid #065fd49e; }
+
+.button {
+  padding: 15px 10px;
+  background: transparent;
+  border: 1px solid var(--main-font-color);
+  border-radius: 20px;
+  color: var(--main-font-color);
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: all 0.3s;
+  letter-spacing: 1.2px;
+}
+.button:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.link {
+  display: inline-block;
+  color: var(--main-font-color);
+  padding: 5px;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.link:visited, .link:focus .link:hover, .link:active {
+  color: var(--main-font-color);
+  scale: 1.2;
+  border-bottom: 3px solid green;
+}
+.link:hover, .link:active, .link:focus {
+  color: var(--main-link-active-color);
+  scale: 1.3;
+  
+}
+
+
+.main__header h1 {
+  margin-bottom: 20px;
+  font-size: 38px;
+  font-weight: 400;
+  color: lawngreen;
+}
+
+.main__nav {
+  /* margin-bottom: 12px; */
+  margin: 10px;
+  border-bottom: 1px solid var(--main-border-color);
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  grid-gap: 10px;
+}
+
+.main__nav .link {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 11px;
+  align-content: center;
+}
+.main__nav .link.is-active {
+  color: var(--main-link-active-color);
+  border-bottom: 3px solid green;
+}
+/* .main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
+  display: none;
+}
+.main__nav {  display: none;} */
+
+.main__playlists h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--main-border-color);
+  margin-right: 10px;
+    color: var(--main-link-active-color);
+  border-bottom: 3px solid green;
+}
+
+
+
+.music__list {
+    display: flex;
+    grid-gap: 1rem;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100vh - 260px);
+    overflow-y: auto;
+    align-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.music__list-item {
+    padding: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    transition: opacity 1.0s ease-in;
+    display: flex;
+    width: 40vw;
+    height: calc(40vw * 0.75);
+    padding-top: 14px;
+    position: relative;
+    cursor: pointer;
+    background-image: url(https://img.pikbest.com/wp/202347/lit-neon-close-up-of-headphones-on-black-background-rendered-in-3d_9756571.jpg!w700wp);
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.music__list-item:hover {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease-in;
+    color: #05ff1f;
+    border-bottom: solid;
+}
+  
+.plSel, .plSel:hover {
+    color: #05ff1f;
+    border-bottom: double;
+    cursor: default;
+    opacity: 1 !important;
+  }
+
+.activity {
+  grid-area: social;
+  display: none;
+  background-color: var(--activity-bg-color);
+  padding-left: 20px;
+}
+.activity h2 {
+  margin: 30px 0;
+}
+
+
+.footer {
+    position: fixed;
+    display: grid;
+    height: var(--footer-height);
+    grid-template-columns: 50vw 1fr 12vw;
+    bottom: 8px;
+    background: var(--main-bg-color-dark);
+    width: -webkit-fill-available;
+    margin: 8px 8px 0px 8px;
+}
+
+
+.now-playing {
+  display: flex;
+}
+
+.album__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 16%;
+    margin: 10px;
+}
+
+.album__musician,
+.album__title {
+  display: block;
+}
+
+.album__info {
+    padding: 12px 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.album__title {
+  color: var(--main-highlight-color);
+  margin-bottom: 0px;
+  font-size: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.album__musician {
+ font-size: 1.0em; /* 13px;*/
+   text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+i {
+  color: var(--main-font-color);
+  /*padding: 0 10px;*/
+  padding: 0px 2vw;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+i:hover {
+  color: var(--main-link-active-color);
+}
+i.fa-play-circle {
+  font-size: 2.5em;
+    padding: 0px 2vw;
+}
+i.fa-play-circle:hover {
+  transform: scale(1.2);
+}
+
+.fa, .far, .fas {
+    font-family: Font Awesome\ 5 Free;
+    font-size: 1.5em;
+}
+
+.fa-braille:before {
+    content: "\f2a1";
+    font-size: 0.7em;
+}
+
+.player__controls {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-device-controls { align-self: center;}
+
+.song__title, .plTitle {
+  font-size: 18px;
+  color: var(--main-highlight-color);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+}
+
+
+.song__creator { font-size: 12px;}  
+
+.plNum, .plLength, .hide, .music-player {display: none; }
+
+ul { list-style:none; }
+
+.album__musician0{
+  width: 20px;
+  height: 20px;
+  background: black;
+  position: relative;
+  border-radius: 50%;
+}
+
+
+@media  (min-aspect-ratio: 1){
+.music__list-item {
+    width: 25vw;
+    height: calc(25vw * 0.75);
+  }
+}
+
+@media  (min-aspect-ratio: 1.3){
+.music__list-item {
+    width: 20vw;
+    height: calc(20vw * 0.75);
+  }
+}
+
+@media  (min-aspect-ratio: 1.8){
+.music__list-item {
+    width: 20vw;
+    height: calc(20vw * 0.75);
+  }
+}
+
+</style>
 
 </head>
 
@@ -116,33 +457,22 @@
 
 
 /* STINGRAY TV !!! */
-{ track: 100, name: "Rafaga - Aguita", file: "https://dn720305.ca.archive.org/0/items/rafaga-otra-dimension-2001-914/R%C3%A1faga%20-%20Otra%20Dimensi%C3%B3n%20%282001%29%20-Leader%20Music%20%2BAmerico%20Alfonso%20Funes%20Iter%2F03.%20Ag%C3%BCita.mp3" },
-{ track: 100, name: "Stingray Music Euro Hit", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3019" },
-{ track: 100, name: "Stingray Music The Spa", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3027" },
-{ track: 100, name: "Stingray Music Hip-Hop", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3024" },
-{ track: 100, name: "Stingray Music K-Pop", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3018" },
-{ track: 100, name: "Stingray Music Nothin But 90S", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3028" },
-{ track: 100, name: "Stingray Music Flashback 70S", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3030" },
-{ track: 100, name: "Stingray Music Smooth Jazz", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3022" },
-{ track: 100, name: "Stingray Music After Native", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3026" },
-{ track: 100, name: "Stingray Music Pop Adult", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3023" },
-{ track: 100, name: "Stingray Music Y2K", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3020" },
-{ track: 100, name: "Stingray Karaoke I",ile: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3032" },
-{ track: 100, name: "Stingray Karaoke II",le: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3033" },
-{ track: 100, name: "Stingray Karaoke III",e: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3040" },
-{ track: 100, name: "Stingray Karaoke Fun", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3029" },
-{ track: 100, name: "Stingray Intermision", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3038" },
-{ track: 100, name: "Stingray Music Easy Listening", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3021" },
-{ track: 100, name: "Stingray Cmusic I",ile: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3034" },
-{ track: 100, name: "Stingray Cmusic II",le: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3035" },
-{ track: 100, name: "Stingray Djazz", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3037" },
-{ track: 100, name: "Stingray Naturescape", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3036" },
-{ track: 100, name: "Stingray Naturescape Fire", file: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3041" },
-{ track: 100, name: "Stingray Qello I",ile: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3031" },
-{ track: 100, name: "Stingray Qello II",le: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3039" },
-{ track: 100, name: "Stingray Qello III",e: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=3042" },
+{ track: 100, name: "Rafaga - Megamix", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Rafaga%20Mix.mp3" },
+{ track: 100, name: "Los Palmeras - Enganchados", file: "https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" },
+          
+{ track: 100, name: "Retro Mix Cumbia 2000", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20La%20Mejor%20RETRO%20CUMBIA%20ARGENTINA%20Gilda%20Amar%20Azul%20Los%20Palmeras%20Antonio%20Rios.mp3" },
+{ track: 101, name: "Cumbia Tropical - DJ Ivan Lima", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Tropicales%20del%20%2790%20-%20Grandes%20%C3%89xitos%20Dj%20Ivan%20Lima.mp3" },        
 
-{ track: 101, name: "Global Music TV", file: "https://stmv.video.gmpro.top/global/global/playlist.m3u8" },        
+{ track: 100, name: "Retro Mix Cuarteto 90s", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Sebastian%20Alcides%20Pocho%20Ricky%20Miguel%20Conejito%20MEGAMIX.mp3" },
+{ track: 100, name: "Alcides - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Alcides%20Existos%20enganchados.mp3" },
+{ track: 101, name: "Ricky Maravilla - Enganchados", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Ricky%20Maravilla%20-%20ENGANCHADO%20DE%20EXITOS.mp3" },
+{ track: 101, name: "Sebastian - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Sebastian%20-%20Enganchados.mp3" },     
+          
+{ track: 101, name: "Rock Nacional 80s - Varios artistas", file: "https://ia600604.us.archive.org/6/items/RetroRockNacionalVol.1UnaHoraFromYouTube/Retro%20Rock%20Nacional%20Vol.1%20-%20Una%20Hora%20-%20from%20YouTube.mp3" },        
+{ track: 101, name: "", file: "" },        
+
+
+{ track: 101, name: "", file: "" },        
 
 
     
