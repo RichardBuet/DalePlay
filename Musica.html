@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset=utf-8 />
@@ -149,8 +149,11 @@ ul {
   align-content: center;
 }
 .main__nav .link.is-active {
-  color: var(--main-link-active-color);
-  border-bottom: 3px solid green;
+  /* color: var(--main-link-active-color);
+  border-bottom: 3px solid green; */
+    color: hsl(331.92deg 100% 57.82%);
+    border-bottom: 3px solid green;
+    background: radial-gradient(#2f386b78, #1d213747, #0e0e0e);
 }
 /* .main__nav .link:nth-of-type(2), .main__nav .link:nth-of-type(3), .main__nav .link:nth-of-type(4), .main__nav .link:nth-of-type(5) {
   display: none;
@@ -402,7 +405,7 @@ input[type="range"]::-moz-range-thumb {
 
 </head>
 
-<body onclick="getinnerText()">
+<body>
 
 
 <div class="wrapper">
@@ -424,7 +427,7 @@ input[type="range"]::-moz-range-thumb {
 
 
   <div class="music-player">
-    <audio controls id="audio-player"><source src="https://musicsrc.cvattv.com.ar/L100" type="audio/mpeg"></audio>
+    <audio controls id="audio-player"><source src="https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" type="audio/mpeg"></audio>
   </div>
 
 
@@ -464,6 +467,7 @@ input[type="range"]::-moz-range-thumb {
 
 <script>
   var currentAudio = document.getElementById("audio-player");
+
   function toggleMute(){
     var btnMute = document.querySelector('#toggleMute');
     var volUp = document.querySelector('#icon-vol-up');
@@ -482,7 +486,9 @@ input[type="range"]::-moz-range-thumb {
 
 <script id="rendered-js">
   var b = document.documentElement;
-
+  //progreso
+  let audior = document.getElementById("audio-player");
+  let progress = document.getElementById('progress');
   jQuery(function ($) {
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
@@ -538,9 +544,22 @@ audio = $('#audio-player').bind('play', function () {
   playing = true;
   npAction.text('Reproduciendo...');
 }).bind('pause', function () {
-  playing = false;
+  playing = true;
   npAction.text('Detenido...');
 }).bind('error', function () {
+  playing = true;
+  $('.selected').next('li').trigger('click');
+  npAction.text('Reinicio...');
+  if (index + 1 < trackCount) {
+    index++;
+    loadTrack(index);
+    audio.play();
+  } else {
+    audio.pause();
+    index = 0;
+    loadTrack(index);
+  }
+}).bind('ended', function () {
   playing = true;
   $('.selected').next('li').trigger('click');
   npAction.text('Reinicio...');
@@ -599,27 +618,55 @@ playTrack = function (id) {
 };
 loadTrack(index);
 }
-}); 
+}),
 //fin
+
+
+
+
+
+
+  //progreso
+  audior.addEventListener('timeupdate', () => {
+        const duration = audior.duration;
+        if (duration > 0) {
+            progress.value = (audior.currentTime / duration) * 100;
+        }
+    });
+
+    progress.addEventListener('input', () => {
+        const duration = audior.duration;
+        if (duration > 0) {
+            audior.currentTime = (progress.value / 100) * duration;
+        }
+    });
+  
+//     audio.addEventListener('ended', () => {
+//         playing = true;
+//   $('.selected').next('li').trigger();
+//   npAction.text('no funciona...');
+//   if (index + 1 < trackCount) {
+//     index++;
+//     loadTrack(index);
+//     audio.play();
+//   } 
+// });
+//   else {
+//     audio.pause();
+//     index = 0;
+//     loadTrack(index);
+//         }
+//    });
+
+
+
 </script>
 
-<script>
+<!-- <script>
   let audio = document.getElementById("audio-player");
-  let playPause = document.getElementById("play");
-   const progress = document.getElementById('progress');
-  playPause.addEventListener("click", () => {
-    if (audio.paused || audio.ended) {
-      playPause.querySelector(".pause-btn").classList.toggle("hide");
-      playPause.querySelector(".play-btn").classList.toggle("hide");
-      audio.play();
-    } else {
-      audio.pause();
-      playPause.querySelector(".pause-btn").classList.toggle("hide");
-      playPause.querySelector(".play-btn").classList.toggle("hide");
-    }
-  });
+  let progress = document.getElementById('progress');
 
-    audio.addEventListener('timeupdate', () => {
+audio.addEventListener('timeupdate', () => {
     const duration = audio.duration;
     if (duration > 0) {
         progress.value = (audio.currentTime / duration) * 100;
@@ -632,7 +679,33 @@ progress.addEventListener('input', () => {
         audio.currentTime = (progress.value / 100) * duration;
     }
 });
-  
+
+
+</script> -->
+
+
+
+
+<script>
+  let audio = document.getElementById("audio-player");
+  let playPause = document.getElementById("play");
+
+
+  playPause.addEventListener("click", () => {
+    if (audio.paused || audio.ended) {
+      playPause.querySelector(".pause-btn").classList.toggle("hide");
+      playPause.querySelector(".play-btn").classList.toggle("hide");
+      audio.play();
+    } else {
+      audio.pause();
+      playPause.querySelector(".pause-btn").classList.toggle("hide");
+      playPause.querySelector(".play-btn").classList.toggle("hide");
+    }
+  });
+
+
+
+
   function muteVolume() {
     if (audio.muted)
       audio.muted = false;
@@ -688,7 +761,7 @@ progress.addEventListener('input', () => {
 // Aquí puedes poner tu código JavaScript que deseas ejecutar cuando haya un cambio en el <span>
         var text = document.getElementById("npTitle").innerText;
         document.title = text + "  -  Spotiday";
-        console.log('¡El contenido del span ha cambiado!');
+        console.log('¡El nombre ha cambiado!');
 // Ejecuta tu función o código aquí
 
 
