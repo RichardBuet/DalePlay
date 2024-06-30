@@ -162,18 +162,21 @@ ul {
 .main__nav {  display: none;} */
 
 .main__playlists h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  font-size: 18px;
+  /* margin-bottom: 20px;
+  padding-bottom: 10px; */
+  margin-bottom: 0px;
+  padding-bottom: 2px;
   border-bottom: 1px solid var(--main-border-color);
   margin-right: 10px;
-    color: var(--main-link-active-color);
+  /* color: var(--main-link-active-color); */
+  color: hsl(159.92deg 90% 43%);
   border-bottom: 3px solid green;
 }
 
 
 
-.music__list {
+/* .music__list {
     display: flex;
     grid-gap: 1rem;
     padding: 0;
@@ -184,25 +187,8 @@ ul {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
+} */
 
-.music__list-item {
-    padding: 10px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-    opacity: 0.8;
-    transition: opacity 1.0s ease-in;
-    display: flex;
-    width: 40vw;
-    height: calc(40vw * 0.75);
-    padding-top: 14px;
-    position: relative;
-    cursor: pointer;
-    background-image: url(https://img.pikbest.com/wp/202347/lit-neon-close-up-of-headphones-on-black-background-rendered-in-3d_9756571.jpg!w700wp);
-    align-items: baseline; /*flex-end;*/
-    justify-content: center;
-}
 
 .music__list-item:hover {
     opacity: 1 !important;
@@ -396,7 +382,8 @@ input[type="range"]::-moz-range-thumb {
     margin: 0 auto;
     text-align: center;
     display: flex;
-    background: repeating-radial-gradient(black, transparent 120px);
+    background: repeating-radial-gradient(black, transparent 150px);
+    justify-content: center;
 }
 
 /* no funciona por prioridad pero esta bien el código */
@@ -417,279 +404,429 @@ ul { list-style:none; }
 }
 
 
-@media  (min-aspect-ratio: 1){
-.music__list-item {
-    width: 25vw;
-    height: calc(25vw * 0.75);
-  }
+
+
+
+.movies-list {
+    width: 100%;
+    /* height: 220px; */
+    position: relative;
+    margin: 10px 0 20px;
 }
 
-/* SOLO PARA PANTALLA NOTEBOOK */
+.music__list{
+    position: relative;
+    width: 92%;
+    padding-left: 0px;
+    height: 166px;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+}
+
+.music__list::-webkit-scrollba{
+  display: none;
+}
+
+.music__list-item {
+    position: relative;
+    min-width: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
+    /* height: 200px; */
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 5px;
+    margin-left: 5px;
+    transition: 0.5s;
+    background: #030b17;
+    padding: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.8;
+    transition: opacity 1.0s ease-in;
+    display: flex;
+    /* width: 40vw; */
+    height: calc(70vh* 0.3);
+    padding-top: 14px;
+    cursor: pointer;
+    background-image: url(https://img.pikbest.com/wp/202347/lit-neon-close-up-of-headphones-on-black-background-rendered-in-3d_9756571.jpg!w700wp);
+    align-items: baseline;
+    justify-content: center;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.music__list-item:hover {
+  transform: scale(1.1);
+}
+
+.music__list-item:hover .music__list-item-body {
+  opacity: 1;
+}
+
+.pre-btn,
+.nxt-btn {
+  position: absolute;
+  top: 0;
+  width: 5%;
+  height: 100%;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.pre-btn {
+  left: 0;
+  background: linear-gradient(to right, #0c111b 0%, #0c111b00);
+}
+
+.nxt-btn {
+  right: 0;
+  background: linear-gradient(to left, #0c111b 0%, #0c111b00);
+}
+
+.pre-btn img,
+.nxt-btn img {
+  width: 15px;
+  height: 20px;
+  opacity: 0;
+}
+
+.pre-btn:hover img,
+.nxt-btn:hover img {
+  opacity: 1;
+}
+
+
+@media  (max-aspect-ratio: 1){
+  .music__list-item {
+    position: relative;
+    min-width: calc(100% / 3 - 10px);
+}
+}
+
+/* SOLO PARA PANTALLA NOTEBOOK 
 @media  (min-aspect-ratio: 1.3){
 .music__list-item {
     width: 18vw;
     height: calc(18vw* 0.75);
   }
 }
-
+*/
 /* SOLO PARA PANTALLA VERTICAL */
 @media  (max-aspect-ratio: 0.7){
-.footer{
-  grid-template-columns: 41vw 50vw;
+  .footer{
+    grid-template-columns: 41vw 50vw;
+  }
+  .album__image {
+    display: none;
+  }
+  .album__info {
+    padding-left: 12px;
+  }
+
+  .music__list-item {
+    position: relative;
+    min-width: calc(100% / 3 - 10px);
+  }
+
+  span.plTitle {
+    opacity: 1;
+    font-size: small;
+  }
 }
-.album__image {
-  display: none;
-}
-.album__info {
-  padding-left: 12px;
-}
-}
-  
+
+
 </style>
 
 </head>
 
 <body>
 
-
-<div class="wrapper">
-  <main>
-    <header class="main__header">
-      <h1>Spotiday</h1>
-    </header>
-
-    <nav class="main__nav">
-      <a class="link" href="https://richardbuet.github.io/Spotiday/Radios.html">Radios</a>
-      <a class="link" href="https://richardbuet.github.io/Spotiday/Playlist.html">Playlist</a>
-      <a class="link is-active" href="#">Música</a>
-    </nav>
-    <section class="main__playlists">
-      <!-- <h2>Listas destacadas</h2> -->
-      <div id="plreprod"> <ul class="music__list" id="plList">  </ul> </div>
-    </section>
-  </main>
-
-
-
-  <div class="music-player">
-    <audio controls id="audio-player"><source src="https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" type="audio/mpeg"></audio>
-  </div>
-
-
-  <footer class="footer"> 
-
-    <div class="now-playing">
-      <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
-      <div class="album__info">
-        <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
-        <span class="album__musician0" id="npTitle0"></span>
-        <span class="album__musician" id="npAction"></span>
-      </div> 
-    </div>
-
-    <div class="mandos">
-      <div class="controls"> 
-        <div id="time-display">0:00 / 0:00</div>
-        <input type="range" id="progress" value="0" max="100">
-      </div>
-      <div class="player__controls">
-        <div class="player__btn player__btn--medium" id="btnPrev"> 
-          <i class="fas fa-backward"></i> </div>
-        <div class="player__btn player__btn--medium blue play" id="play">
-          <i class="far fa-play-circle play-btn"></i> <i class="fas fa-pause pause-btn hide"></i> </div>
-        <div class="player__btn player__btn--medium" id="btnNext">
-          <i class="fas fa-forward"></i> </div>
-        <div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
-          <i id="icon-vol-up" class='fas fa-volume-up'></i>
-          <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-  </footer>
-</div>
-
-
-
-<script>
-  document.getElementById("npAction").innerHTML = "Mix Variado"; 
-</script>
-
-<script>
-  var currentAudio = document.getElementById("audio-player");
-
-  function toggleMute(){
-    var btnMute = document.querySelector('#toggleMute');
-    var volUp = document.querySelector('#icon-vol-up');
-    var volMute = document.querySelector('#icon-vol-mute');
-    if (this.currentAudio.muted == false) {
-      this.currentAudio.muted = true
-      volUp.style.display = "none"
-      volMute.style.display = "block"
-    }else{
-      this.currentAudio.muted = false
-      volMute.style.display = "none"
-      volUp.style.display = "block"
-    }
-  }
-</script>
-
-<script id="rendered-js">
-  var b = document.documentElement;
-  //progreso
- // let audior = document.getElementById("audio-player");
-  let audio = document.getElementById("audio-player");
-  let progress = document.getElementById('progress');
-  let timeDisplay = document.getElementById('time-display');
-
+  <div class="wrapper">
+      <main>
+          <header class="main__header">
+              <h1>Spotiday</h1>
+          </header>
   
+          <nav class="main__nav">
+              <a class="link" href="https://richardbuet.github.io/Spotiday/Radios.html">Radios</a>
+              <a class="link" href="https://richardbuet.github.io/Spotiday/Playlist.html">Playlist</a>
+              <a class="link is-active" href="#">Música</a>
+          </nav>
+          <section class="main__playlists">
+              <div id="playlist1">
+                <h2>Remix - Cuarteto y Cumbia</h2>
+                <div class="movies-list">
+                  <button class="pre-btn" title="btn">
+                    <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+                  </button>
+                  <button class="nxt-btn" title="btn">
+                    <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+                  </button>
+                    <ul class="music__list" id="plList1"></ul>
+                </div>
+              </div>
+
+              <div id="playlist2">
+                  <h2>Compilado - Rock Nacional y artistas</h2>
+                  <div class="movies-list">
+                    <button class="pre-btn" title="btn">
+                      <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+                    </button>
+                    <button class="nxt-btn" title="btn">
+                      <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+                    </button>
+                    <ul class="music__list" id="plList2"></ul>
+                  </div>
+              </div>
+
+          </section>
+      </main>
+  
+      <div class="music-player">
+          <audio controls id="audio-player">
+              <source src="https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" type="audio/mpeg">
+          </audio>
+      </div>
+  
+      <footer class="footer">
+          <div class="now-playing">
+              <img class="album__image" src="https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg" alt="Play" width="626" height="357"/>
+              <div class="album__info">
+                  <span class="album__title" id="npTitle">Spotiday<i class='fas fa-braille' style="padding-left: 10px;color:green;"></i></span>
+                  <span class="album__musician0" id="npTitle0"></span>
+                  <span class="album__musician" id="npAction"></span>
+              </div>
+          </div>
+  
+          <div class="mandos">
+              <div class="controls">
+                  <div id="time-display">0:00 / 0:00</div>
+                  <input type="range" id="progress" value="0" max="100">
+              </div>
+              <div class="player__controls">
+                  <div class="player__btn player__btn--medium" id="btnPrev"><i class="fas fa-backward"></i></div>
+                  <div class="player__btn player__btn--medium blue play" id="play">
+                      <i class="far fa-play-circle play-btn"></i>
+                      <i class="fas fa-pause pause-btn hide"></i>
+                  </div>
+                  <div class="player__btn player__btn--medium" id="btnNext"><i class="fas fa-forward"></i></div>
+                  <div class="play-device-controls" id="toggleMute" onclick="toggleMute()">
+                      <i id="icon-vol-up" class='fas fa-volume-up'></i>
+                      <i id="icon-vol-mute" class='fas fa-volume-off' style="display: none"></i>
+                  </div>
+              </div>
+          </div>
+      </footer>
+  </div>
+  
+  
+  <script>
+      document.getElementById("npAction").innerHTML = "Bienvenido"; 
+  
+      var currentAudio = document.getElementById("audio-player");
+  
+      function toggleMute(){
+          var volUp = document.querySelector('#icon-vol-up');
+          var volMute = document.querySelector('#icon-vol-mute');
+          if (currentAudio.muted == false) {
+              currentAudio.muted = true;
+              volUp.style.display = "none";
+              volMute.style.display = "block";
+          } else {
+              currentAudio.muted = false;
+              volMute.style.display = "none";
+              volUp.style.display = "block";
+          }
+      }
+  </script>
+  
+  <script>
     
-  jQuery(function ($) {
-    var supportsAudio = !!document.createElement('audio').canPlayType;
-    if (supportsAudio) {
+    let progress = document.getElementById('progress');
+    let timeDisplay = document.getElementById('time-display');
+      var tracks = [
+      { track: 101, playlist: 1, name: "Fiesta Megamix - Cuarteto", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F03.%20Megamix%20La%20K%27onga%202022.mp3"},
+      { track: 101, playlist: 1, name:"Fiesta Megamix - Santafesino", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20SANTAFESINA%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3"},
+      { track: 101, playlist: 1, name: "Los Palmeras - Mix I", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F02.%20Palmera%20Mix.mp3"},
+      { track: 100, playlist: 1, name: "Los Palmeras - Mix II", file: "https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3"},
+      { track: 100, playlist: 1, name: "Rafaga - Megamix", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Rafaga%20Mix.mp3"},
+      { track: 101, playlist: 1, name: "Antonio Rios - Mix", file: "https://ia902501.us.archive.org/31/items/varios-interpretes-fiesta-fiesta-2019-cumbia-de-la-buena-2019-960/Varios%20Int%C3%A9rpretes%20-%20Fiesta%2C%20Fiesta%202019%20%C2%A1Cumbia%20De%20La%20Buena%21%20%282019%29%20-Leader%20Music%20%2BLeoArroyo%2F06.%20Antonio%20R%C3%ADos%20-%20Maestro%20Mix.mp3"},
+      { track: 101, playlist: 1, name: "Fiesta Megamix - Cumbia retro", file: "https://ia601602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20RETRO%20%20%20ESPECIAL%20CUARENTENA%20%E2%9C%98%20ENGANCHADO%20%E2%9C%98%20FIESTERO%20%E2%9C%98%20PECHITO%20REMIX%20%F0%9F%8E%B5.mp3"},
+      { track: 100, playlist: 1, name: "Retro Mix Cumbia 2000", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20La%20Mejor%20RETRO%20CUMBIA%20ARGENTINA%20Gilda%20Amar%20Azul%20Los%20Palmeras%20Antonio%20Rios.mp3"},
+      { track: 100, playlist: 1, name: "Retro Mix Cuarteto 90s", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Sebastian%20Alcides%20Pocho%20Ricky%20Miguel%20Conejito%20MEGAMIX.mp3"},
+      { track: 100, playlist: 1, name: "Alcides - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Alcides%20Existos%20enganchados.mp3"},
+      { track: 101, playlist: 1, name: "Ricky Maravilla - Enganchados", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Ricky%20Maravilla%20-%20ENGANCHADO%20DE%20EXITOS.mp3"},
+      { track: 101, playlist: 1, name: "Sebastian - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Sebastian%20-%20Enganchados.mp3"},
 
-      var index = -1,
-      playing = true;
-      mediaPath = '',
-      extension = '',
-      tracks = [
-        /* Lista !!! */
-        { track: 101, name: "Fiesta Megamix - Cuarteto", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F03.%20Megamix%20La%20K%27onga%202022.mp3" },
-        { track: 101, name: "Fiesta Megamix - Santafesino", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20SANTAFESINA%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3" },
-        { track: 101, name: "Los Palmeras - Mix I", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F02.%20Palmera%20Mix.mp3" },
-        { track: 100, name: "Los Palmeras - Mix II", file: "https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" },
-        { track: 100, name: "Rafaga - Megamix", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Rafaga%20Mix.mp3" },
-        { track: 101, name: "Antonio Rios - Mix", file: "https://ia902501.us.archive.org/31/items/varios-interpretes-fiesta-fiesta-2019-cumbia-de-la-buena-2019-960/Varios%20Int%C3%A9rpretes%20-%20Fiesta%2C%20Fiesta%202019%20%C2%A1Cumbia%20De%20La%20Buena%21%20%282019%29%20-Leader%20Music%20%2BLeoArroyo%2F06.%20Antonio%20R%C3%ADos%20-%20Maestro%20Mix.mp3" },
-        { track: 101, name: "Fiesta Megamix - Cumbia retro", file: "https://ia601602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20RETRO%20%20%20ESPECIAL%20CUARENTENA%20%E2%9C%98%20ENGANCHADO%20%E2%9C%98%20FIESTERO%20%E2%9C%98%20PECHITO%20REMIX%20%F0%9F%8E%B5.mp3" },
-        { track: 100, name: "Retro Mix Cumbia 2000", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20La%20Mejor%20RETRO%20CUMBIA%20ARGENTINA%20Gilda%20Amar%20Azul%20Los%20Palmeras%20Antonio%20Rios.mp3" },
-        { track: 100, name: "Retro Mix Cuarteto 90s", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Sebastian%20Alcides%20Pocho%20Ricky%20Miguel%20Conejito%20MEGAMIX.mp3" },
-        { track: 100, name: "Alcides - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Alcides%20Existos%20enganchados.mp3" },
-        { track: 101, name: "Ricky Maravilla - Enganchados", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Ricky%20Maravilla%20-%20ENGANCHADO%20DE%20EXITOS.mp3" },
-        { track: 101, name: "Sebastian - Enganchados", file: "https://ia801807.us.archive.org/14/items/selecciondecumbias_202103/Sebastian%20-%20Enganchados.mp3" },
-        { track: 101, name: "Rock Nacional 80s - Varios artistas", file: "https://ia600604.us.archive.org/6/items/RetroRockNacionalVol.1UnaHoraFromYouTube/Retro%20Rock%20Nacional%20Vol.1%20-%20Una%20Hora%20-%20from%20YouTube.mp3" },
-        { track: 101, name: "Rock Nacional 90s - Varios artistas", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/ROCK%20NACIONAL%20ARGENTINO%2080%27s..90%27s%20-%20PARTE%20-%2001%20dj%20diego%20frias.mp3" },
-        { track: 101, name: "Rock Nacional mix 1", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional1.mp3" },
-        { track: 101, name: "Rock Nacional mix 2", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional3.mp3" },
-        { track: 101, name: "Los Fabulosos Cadillacs", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20fabulosos%20cadillacs%20enganchados.mp3" },
-        { track: 101, name: "Los Autenticos Decadentes", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20autenticos%20decadentes%20enganchados.mp3" },
-        { track: 101, name: "El Simbolo - Enganchados", file: "https://ia903400.us.archive.org/7/items/bolicheros/El%20Simbolo%20-%20_mix%20exitos%207min.mp3" },
-        { track: 101, name: "Mix Latinos - DJ Kairuz", file: "https://ia600307.us.archive.org/31/items/DjKairuzLaBatallaDeLosDjs24Www.SoloCumbiaOficial.Blogspot.com/Dj%20Kairuz%20-%20La%20Batalla%20de%20los%20Djs%2024%20-%20www.SoloCumbiaOficial.Blogspot.com%20-.mp3" },
-        { track: 101, name: "Cumbia Tropical - DJ Ivan Lima", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Tropicales%20del%20%2790%20-%20Grandes%20%C3%89xitos%20Dj%20Ivan%20Lima.mp3" },
-        { track: 101, name: "Latinos Romanticos - Nico Vallorani", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/LATINOS%20ROMANTICOS%20REMIXADOS%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3" },
-        { track: 101, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
-        { track: 101, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
-        { track: 102, name: "La Previa 1", file: "https://ia803009.us.archive.org/13/items/enganchadoparalaprevia1sergiodj/Enganchado%20para%20la%20previa%201%20Sergio%20Dj.mp3" },
-        { track: 102, name: "La Previa 2", file: "https://ia801008.us.archive.org/8/items/enganchadoparalaprevia2/Enganchado%20para%20la%20previa%202.mp3" },     
-        { track: 102, name: "La Previa 3", file: "https://ia801006.us.archive.org/14/items/enganchadoparalaprevia3/enganchado%20para%20la%20previa%203.mp3" },
-        { track: 102, name: "La Previa 4", file: "https://ia601002.us.archive.org/0/items/enganchadoparalaprevia4/Enganchado%20para%20la%20previa%204.mp3" },
-        { track: 102, name: "La Previa 5", file: "https://ia801002.us.archive.org/15/items/enganchadoparalaprevia5/Enganchado%20para%20la%20previa%205.mp3" },
-        { track: 102, name: "La Previa 6", file: "https://ia801009.us.archive.org/8/items/enganchadoparalaprevia6/Enganchado%20para%20la%20previa%206.mp3" },
 
-        
-        
-      //  { track: 102, name: "", file: "" },
-      ],
 
-      buildPlaylist = $.each(tracks, function (key, value) {
-        var trackNumber = value.track,
-        trackName = value.name;
-        if (trackNumber.toString().length === 1) {
-          trackNumber = '0' + trackNumber;
-        }
-        $('#plList').append('<li class="music__list-item"> \
-          <div class="plItem"> \
-          <span class="plNum">' + trackNumber + '.</span> \
-          <span class="plTitle">' + trackName + '</span> \
-          </div> \
-          </li>');
-      }),
+      { track: 102, playlist: 2, name: "Rock Nacional 80s - Varios artistas", file: "https://ia600604.us.archive.org/6/items/RetroRockNacionalVol.1UnaHoraFromYouTube/Retro%20Rock%20Nacional%20Vol.1%20-%20Una%20Hora%20-%20from%20YouTube.mp3"},
+      { track: 102, playlist: 2, name: "Rock Nacional 90s - Varios artistas", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/ROCK%20NACIONAL%20ARGENTINO%2080%27s..90%27s%20-%20PARTE%20-%2001%20dj%20diego%20frias.mp3" },
+      { track: 102, playlist: 2, name: "Rock Nacional mix 1", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional1.mp3"},
+      { track: 102, playlist: 2, name: "Rock Nacional mix 2", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional3.mp3"},
+      { track: 102, playlist: 2, name: "Los Fabulosos Cadillacs", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20fabulosos%20cadillacs%20enganchados.mp3"},
+      { track: 102, playlist: 2, name: "Los Autenticos Decadentes", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20autenticos%20decadentes%20enganchados.mp3"},
 
-      trackCount = tracks.length,
-      npAction = $('#npAction'),
-      npTitle = $('#npTitle'),
-      audio = $('#audio-player').bind('play', function () {
+      { track: 102, playlist: 2, name: "Mix Latinos - DJ Kairuz", file: "https://ia600307.us.archive.org/31/items/DjKairuzLaBatallaDeLosDjs24Www.SoloCumbiaOficial.Blogspot.com/Dj%20Kairuz%20-%20La%20Batalla%20de%20los%20Djs%2024%20-%20www.SoloCumbiaOficial.Blogspot.com%20-.mp3" },
+      { track: 102, playlist: 2, name: "Cumbia Tropical - DJ Ivan Lima", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Tropicales%20del%20%2790%20-%20Grandes%20%C3%89xitos%20Dj%20Ivan%20Lima.mp3" },
+      { track: 102, playlist: 2, name: "Latinos Romanticos - Nico Vallorani", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/LATINOS%20ROMANTICOS%20REMIXADOS%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3" },
+      { track: 102, playlist: 2, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
+      { track: 102, playlist: 2, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
+      { track: 102, playlist: 2, name: "La Previa 1", file: "https://ia803009.us.archive.org/13/items/enganchadoparalaprevia1sergiodj/Enganchado%20para%20la%20previa%201%20Sergio%20Dj.mp3" },
+      { track: 102, playlist: 2, name: "La Previa 2", file: "https://ia801008.us.archive.org/8/items/enganchadoparalaprevia2/Enganchado%20para%20la%20previa%202.mp3" },     
+      { track: 102, playlist: 2, name: "La Previa 3", file: "https://ia801006.us.archive.org/14/items/enganchadoparalaprevia3/enganchado%20para%20la%20previa%203.mp3" },
+      { track: 102, playlist: 2, name: "La Previa 4", file: "https://ia601002.us.archive.org/0/items/enganchadoparalaprevia4/Enganchado%20para%20la%20previa%204.mp3" },
+      { track: 102, playlist: 2, name: "La Previa 5", file: "https://ia801002.us.archive.org/15/items/enganchadoparalaprevia5/Enganchado%20para%20la%20previa%205.mp3" },
+      { track: 102, playlist: 2, name: "La Previa 6", file: "https://ia801009.us.archive.org/8/items/enganchadoparalaprevia6/Enganchado%20para%20la%20previa%206.mp3" },
+          
+          
+          // Agrega más pistas aquí y asigna el número de playlist adecuado
+          ];
+
+
+          function buildPlaylist() {
+        tracks.forEach(function (value, index) {
+            var trackNumber = value.track,
+                trackName = value.name,
+                playlistId = "plList" + value.playlist;
+
+            if (trackNumber.toString().length === 1) {
+                trackNumber = '0' + trackNumber;
+            }
+
+            var playlistElement = document.getElementById(playlistId);
+            playlistElement.innerHTML += '<li class="music__list-item" data-index="' + index + '"> \
+                <div class="plItem"> \
+                    <span class="plNum">' + trackNumber + '.</span> \
+                    <span class="plTitle">' + trackName + '</span> \
+                </div> \
+            </li>';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', buildPlaylist);
+
+    var index = -1,
+        playing = false,
+        audio = document.getElementById('audio-player'),
+        npAction = document.getElementById('npAction'),
+        npTitle = document.getElementById('npTitle');
+
+    audio.addEventListener('play', function () {
         playing = true;
-        npAction.text('Reproduciendo...');
-      }).bind('pause', function () {
+        npAction.textContent = 'ONLINE...';
+        document.querySelector('.play-btn').classList.add('hide');
+        document.querySelector('.pause-btn').classList.remove('hide');
+    });
+
+    audio.addEventListener('pause', function () {
+        playing = false;
+        npAction.textContent = 'Detenido...';
+        document.querySelector('.play-btn').classList.remove('hide');
+        document.querySelector('.pause-btn').classList.add('hide');
+    });
+
+    audio.addEventListener('error', function () {
         playing = true;
-        npAction.text('Detenido...');
-      }).bind('error', function () {
+        nextTrack();
+    });
+
+    audio.addEventListener('ended', function () {
         playing = true;
-        $('.selected').next('li').trigger('click');
-        npAction.text('Reinicio...');
-        if (index + 1 < trackCount) {
-          index++;
-          loadTrack(index);
-          audio.play();
-        } else {
-          audio.pause();
-          index = 0;
-          loadTrack(index);
-        }
-      }).bind('ended', function () {
-        playing = true;
-        $('.selected').next('li').trigger('click');
-        npAction.text('Reinicio...');
-        if (index + 1 < trackCount) {
-          index++;
-          loadTrack(index);
-          audio.play();
-        } else {
-          audio.pause();
-          index = 0;
-          loadTrack(index);
-        }
-      }).get(0),
-      btnPrev = $('#btnPrev').click(function () {
+        nextTrack();
+    });
+
+    document.getElementById('btnPrev').addEventListener('click', function () {
         if (index - 1 > -1) {
-          index--;
-          loadTrack(index);
-          if (playing) {
-            audio.play();
-          }
+            index--;
+            loadTrack(index);
+            if (playing) {
+                audio.play();
+            }
         } else {
-          audio.pause();
-          index = 0;
-          loadTrack(index);
+            audio.pause();
+            index = 0;
+            loadTrack(index);
         }
-      }),
-      btnNext = $('#btnNext').click(function () {
-        if (index + 1 < trackCount) {
-          index++;
-          loadTrack(index);
-          if (playing) {
-            audio.play();
-          }
+    });
+
+    document.getElementById('btnNext').addEventListener('click', function () {
+        nextTrack();
+    });
+
+    document.getElementById('play').addEventListener('click', function () {
+        if (playing) {
+            audio.pause();
         } else {
-          audio.pause();
-          index = 0;
-          loadTrack(index);
+            audio.play();
         }
-      }),
-      li = $('#plList li').click(function () {
-        var id = parseInt($(this).index());
-        if (id !== index) {
-          playTrack(id);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.closest('.music__list-item')) {
+            var item = e.target.closest('.music__list-item');
+            var id = item.getAttribute('data-index');
+            if (id != index) {
+                playTrack(id);
+            } else {
+                if (playing) {
+                    audio.pause();
+                } else {
+                    audio.play();
+                }
+            }
         }
-      }),
-      loadTrack = function (id) {
-        $('.plSel').removeClass('plSel');
-        $('#plList li:eq(' + id + ')').addClass('plSel');
-        npTitle.text(tracks[id].name);
+    });
+
+    function nextTrack() {
+        var currentPlaylist = tracks[index].playlist;
+        var nextIndex = tracks.findIndex(function(track, idx) {
+            return track.playlist === currentPlaylist && idx > index;
+        });
+
+        if (nextIndex === -1) {
+            nextIndex = tracks.findIndex(function(track) {
+                return track.playlist === currentPlaylist;
+            });
+        }
+
+        if (nextIndex !== -1) {
+            index = nextIndex;
+            loadTrack(index);
+            if (playing) {
+                audio.play();
+            }
+        } else {
+            audio.pause();
+        }
+    }
+
+    function loadTrack(id) {
+        document.querySelectorAll('.plSel').forEach(function (item) {
+            item.classList.remove('plSel');
+        });
+
+        document.querySelectorAll('.music__list-item')[id].classList.add('plSel');
+        npTitle.textContent = tracks[id].name;
         index = id;
         audio.src = tracks[id].file;
-      },
-      playTrack = function (id) {
+    }
+
+    function playTrack(id) {
         loadTrack(id);
         audio.play();
-      };
-      loadTrack(index);
     }
-  });
 
 // Actualización del progreso
 audio.addEventListener('timeupdate', () => {
@@ -729,121 +866,17 @@ audio.addEventListener('loadedmetadata', () => {
     updateDisplayTime(0, duration); // Inicializar el tiempo total al cargar los metadatos
 });
 
-
-
- // let audio = document.getElementById("audio-player");
-  let playPause = document.getElementById("play");
-
-
-  playPause.addEventListener("click", () => {
-    if (audio.paused || audio.ended) {
-      playPause.querySelector(".pause-btn").classList.toggle("hide");
-      playPause.querySelector(".play-btn").classList.toggle("hide");
-      audio.play();
-    } else {
-      audio.pause();
-      playPause.querySelector(".pause-btn").classList.toggle("hide");
-      playPause.querySelector(".play-btn").classList.toggle("hide");
-    }
-  });
-
-  function muteVolume() {
-    if (audio.muted)
-      audio.muted = false;
-    else
-      audio.muted = true;
-  }
-
-// CONTROL SUPERIORES
-//   navigator.mediaSession.setActionHandler('play', function() {
-//     audio.play();
-//     navigator.mediaSession.playbackState = "playing"; });
-
-//   navigator.mediaSession.setActionHandler('pause', function() {
-//     audio.pause();
-//     navigator.mediaSession.playbackState = "paused";  });
-// // Time to skip in seconds let skipTime = 10; 
-
-//   navigator.mediaSession.setActionHandler('seekbackward', function() {
-//     audio.currentTime = Math.max(audio.currentTime - skipTime, 0); });
-
-//   navigator.mediaSession.setActionHandler('seekforward', function() {
-//     audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration); });
-
-//   navigator.mediaSession.setActionHandler('previoustrack', function() {
-//     document.querySelector('#btnPrev').click()});
-
-//   navigator.mediaSession.setActionHandler('nexttrack', function() {
-//     document.querySelector('#btnNext').click()});
-
-//   document.addEventListener('........
-
-function loadTrack(index) {
-        audio.src = tracks[index].file;
-        audio.load();
-        updateMediaSessionMetadata(tracks[index]);
-        updateDisplayTime(0, audio.duration);
-    }
-
-    function updateMediaSessionMetadata(track) {
-        if ('mediaSession' in navigator) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-                title: track.name,
-                duration: audio.duration,
-                artist: track.artist,
-                album: track.album,
-                artwork: [
-                    { src: `url('https://img1.goodfon.com/wallpaper/nbig/e/27/muzyka-fon-electric-guitar.jpg')`, sizes: '512x512', type: 'image/jpeg' }
-                ]
-            });
-        }
-    }
-    // Control de medios del sistema
-    if ('mediaSession' in navigator) {
-        navigator.mediaSession.setActionHandler('play', function() {
-            audio.play();
-            navigator.mediaSession.playbackState = "playing";
-        });
-
-        navigator.mediaSession.setActionHandler('pause', function() {
-            audio.pause();
-            navigator.mediaSession.playbackState = "paused";
-        });
-
-        let skipTime = 10;
-
-        navigator.mediaSession.setActionHandler('seekbackward', function() {
-            audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
-        });
-
-        navigator.mediaSession.setActionHandler('seekforward', function() {
-            audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration);
-        });
-
-        navigator.mediaSession.setActionHandler('previoustrack', function() {
-          document.querySelector('#btnPrev').click()
-        });
-
-        navigator.mediaSession.setActionHandler('nexttrack', function() {
-            document.querySelector('#btnNext').click()
-        });
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
+
+
+
+
+
+
+
+
+
+
 
 <script>
   const musicLists = document.getElementsByClassName('music_8_list');
@@ -887,7 +920,7 @@ function loadTrack(index) {
 
 // Función para verificar el texto del <span> y cambiar el color de fondo en consecuencia
         function verificarTextoSpan() {
-          if (span.textContent === 'Reproduciendo...') {
+          if (span.textContent === 'ONLINE...') {
             cambiarColorFondo('#01b701');
           } else if (span.textContent === 'Detenido...') {
             cambiarColorFondo('#e43535');
@@ -928,6 +961,28 @@ function loadTrack(index) {
     }, 60000); // 180000 milisegundos = 3 minutos/3
 </script>
 
+<script>
+  //card sliders
+
+let cardContainers = [...document.querySelectorAll(".music__list")];
+let preBtns = [...document.querySelectorAll(".pre-btn")];
+let nxtBtns = [...document.querySelectorAll(".nxt-btn")];
+
+cardContainers.forEach((item, i) => {
+  let containerDimensions = item.getBoundingClientRect();
+  let containerWidth = containerDimensions.width;
+
+  nxtBtns[i].addEventListener("click", () => {
+    item.scrollLeft += containerWidth - 0;
+  });
+
+  preBtns[i].addEventListener("click", () => {
+    item.scrollLeft -= containerWidth - 0;
+  });
+});
+
+
+</script>
 
 </body>
 </html>
