@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
-<meta name="description" content="Radios y Música online 24/7 en Spotiday - v0.24">
+<meta name="description" content="Música online 24/7 en Spotiday - v0.24">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -19,24 +19,19 @@
 /* Estilo global */
   body {
     margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.4;
     font-size: 14px;
     color: var(--main-font-color);
+    background: var(--main-bg-color);
   }
 
-  .wrapper {
+  /* .wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
     background: var(--main-bg-color);
-  }
+  } */
 
   main {
     flex: 1;
@@ -156,6 +151,10 @@ ul {
     background: radial-gradient(#2f386b78, #1d213747, #0e0e0e);
 }
 
+.main__playlists {
+  margin-bottom: 120px;
+}
+
 
 .main__playlists h2 {
   font-size: 16px;
@@ -195,14 +194,14 @@ ul {
 }
 
 .footer {
-  position: fixed;
+    position: fixed;
     display: grid;
     height: var(--footer-height);
     grid-template-columns: 49vw 43vw;
-    bottom: 1.2vh;
+    bottom: 0vh;
     background: var(--main-bg-color-dark);
     width: -webkit-fill-available;
-    margin: 2vw 2.9vw 0px 2.9vw;
+    z-index: 2;
 }
 
 .now-playing {
@@ -420,7 +419,7 @@ ul { list-style:none; }
     opacity: 0.7;
     transition: opacity 1.0s ease-in;
     display: flex;
-    height: calc(70vh* 0.2);
+    height: calc(78vh * 0.2);
     padding-top: 2px;
     cursor: pointer;
     background-image: url(https://media.istockphoto.com/id/1363038388/photo/music-note-icon-neon-light-sign.jpg?s=612x612&w=0&k=20&c=svQAiOfAXmXdlW2EJdlN7PxUZ95Ch4qNoMOrgbg66_E=);
@@ -576,12 +575,25 @@ ul { list-style:none; }
               </div>
           </div>
 
+          <div id="playlist4">
+            <h2>Electro Dance & Latino</h2>
+            <div class="movies-list">
+              <button class="pre-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+              </button>
+              <button class="nxt-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+              </button>
+              <ul class="music__list" id="plList4"></ul>
+            </div>
+          </div>
+
           </section>
       </main>
   
       <div class="music-player">
           <audio controls id="audio-player">
-              <source src="https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3" type="audio/mpeg">
+              <source src="https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F02.%20Palmera%20Mix.mp3" type="audio/mpeg">
           </audio>
       </div>
   
@@ -643,10 +655,10 @@ ul { list-style:none; }
     let timeDisplay = document.getElementById('time-display');
       var tracks = [
       { track: 101, playlist: 1, name: "Fiesta Megamix - Cuarteto", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F03.%20Megamix%20La%20K%27onga%202022.mp3"},
-      { track: 101, playlist: 1, name:"Fiesta Megamix - Santafesino", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20SANTAFESINA%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3"},
-      { track: 101, playlist: 1, name: "Los Palmeras - Mix I", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F02.%20Palmera%20Mix.mp3"},
-      { track: 100, playlist: 1, name: "Los Palmeras - Mix II", file: "https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3"},
-      { track: 100, playlist: 1, name: "Rafaga - Megamix", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Rafaga%20Mix.mp3"},
+      { track: 101, playlist: 1, name: "Fiesta Megamix - Santafesino", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20SANTAFESINA%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3"},
+ //     { track: 101, playlist: 1, name: "Los Palmeras - Mix I", file: "https://dn720307.ca.archive.org/0/items/varios-interpretes-cumbia-fiesta-2021-223/Varios%20Int%C3%A9rpretes%20-%20Cumbia%20Fiesta%20%282021%29%20-Leader%20Music%20%2BLeoArroyo%2F02.%20Palmera%20Mix.mp3"},
+      { track: 100, playlist: 1, name: "Los Palmeras - Mix", file: "https://ia802809.us.archive.org/29/items/lospalmerasenganchadofiestero/LOS_PALMERAS_-_ENGANCHADO_FIESTERO.mp3"},
+      { track: 100, playlist: 1, name: "Rafaga - Mix", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Rafaga%20Mix.mp3"},
       { track: 101, playlist: 1, name: "Antonio Rios - Mix", file: "https://ia902501.us.archive.org/31/items/varios-interpretes-fiesta-fiesta-2019-cumbia-de-la-buena-2019-960/Varios%20Int%C3%A9rpretes%20-%20Fiesta%2C%20Fiesta%202019%20%C2%A1Cumbia%20De%20La%20Buena%21%20%282019%29%20-Leader%20Music%20%2BLeoArroyo%2F06.%20Antonio%20R%C3%ADos%20-%20Maestro%20Mix.mp3"},
       { track: 101, playlist: 1, name: "Fiesta Megamix - Cumbia retro", file: "https://ia601602.us.archive.org/26/items/mix-fiestero-bolichero/CUMBIA%20RETRO%20%20%20ESPECIAL%20CUARENTENA%20%E2%9C%98%20ENGANCHADO%20%E2%9C%98%20FIESTERO%20%E2%9C%98%20PECHITO%20REMIX%20%F0%9F%8E%B5.mp3"},
       { track: 100, playlist: 1, name: "Retro Mix Cumbia 2000", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20La%20Mejor%20RETRO%20CUMBIA%20ARGENTINA%20Gilda%20Amar%20Azul%20Los%20Palmeras%20Antonio%20Rios.mp3"},
@@ -662,18 +674,26 @@ ul { list-style:none; }
       { track: 103, playlist: 2, name: "La Previa 5", file: "https://ia801002.us.archive.org/15/items/enganchadoparalaprevia5/Enganchado%20para%20la%20previa%205.mp3" },
       { track: 103, playlist: 2, name: "La Previa 6", file: "https://ia801009.us.archive.org/8/items/enganchadoparalaprevia6/Enganchado%20para%20la%20previa%206.mp3" },
       { track: 103, playlist: 2, name: "Cumbia Retro - DJ Ivan Lima", file: "https://ia601807.us.archive.org/14/items/selecciondecumbias_202103/Enganchados%20Tropicales%20del%20%2790%20-%20Grandes%20%C3%89xitos%20Dj%20Ivan%20Lima.mp3" },
-      { track: 103, playlist: 2, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
-      { track: 103, playlist: 2, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
-      { track: 103, playlist: 2, name: "Latinos Romanticos - Nico Vallorani", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/LATINOS%20ROMANTICOS%20REMIXADOS%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3" },
-      { track: 103, playlist: 2, name: "Mix Latinos - DJ Kairuz", file: "https://ia600307.us.archive.org/31/items/DjKairuzLaBatallaDeLosDjs24Www.SoloCumbiaOficial.Blogspot.com/Dj%20Kairuz%20-%20La%20Batalla%20de%20los%20Djs%2024%20-%20www.SoloCumbiaOficial.Blogspot.com%20-.mp3" },
+      { track: 103, playlist: 2, name: "Latino Retro - Nico Vallorani", file: "https://ia801602.us.archive.org/26/items/mix-fiestero-bolichero/LATINOS%20ROMANTICOS%20REMIXADOS%20-%20Nico%20Vallorani%20DJ%28MP3_320K%29.mp3" },
+      { track: 103, playlist: 2, name: "Batalla DJ - Kairuz", file: "https://ia600307.us.archive.org/31/items/DjKairuzLaBatallaDeLosDjs24Www.SoloCumbiaOficial.Blogspot.com/Dj%20Kairuz%20-%20La%20Batalla%20de%20los%20Djs%2024%20-%20www.SoloCumbiaOficial.Blogspot.com%20-.mp3" },
       { track: 103, playlist: 2, name: "Mega sesion 4HS", file:"https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/MegaSesionDeVariosGeneros.mp3"},  
 
-      { track: 102, playlist: 3, name: "Rock 80s - Varios artistas", file: "https://ia600604.us.archive.org/6/items/RetroRockNacionalVol.1UnaHoraFromYouTube/Retro%20Rock%20Nacional%20Vol.1%20-%20Una%20Hora%20-%20from%20YouTube.mp3"},
-      { track: 102, playlist: 3, name: "Rock 90s - Varios artistas", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/ROCK%20NACIONAL%20ARGENTINO%2080%27s..90%27s%20-%20PARTE%20-%2001%20dj%20diego%20frias.mp3" },
       { track: 102, playlist: 3, name: "Rock Nacional mix 1", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional1.mp3"},
       { track: 102, playlist: 3, name: "Rock Nacional mix 2", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/rock%20nacional3.mp3"},
+      { track: 102, playlist: 3, name: "Rock&Roll 80s - Varios artistas", file: "https://ia600604.us.archive.org/6/items/RetroRockNacionalVol.1UnaHoraFromYouTube/Retro%20Rock%20Nacional%20Vol.1%20-%20Una%20Hora%20-%20from%20YouTube.mp3"},
+      { track: 102, playlist: 3, name: "Rock&Roll 90s - Varios artistas", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/ROCK%20NACIONAL%20ARGENTINO%2080%27s..90%27s%20-%20PARTE%20-%2001%20dj%20diego%20frias.mp3" },
       { track: 102, playlist: 3, name: "Los Fabulosos Cadillacs", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20fabulosos%20cadillacs%20enganchados.mp3"},
       { track: 102, playlist: 3, name: "Los Autenticos Decadentes", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20autenticos%20decadentes%20enganchados.mp3"},
+
+      { track: 103, playlist: 4, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
+      { track: 103, playlist: 4, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
+      { track: 104, playlist: 4, name: "Electro Latino", file:"https://archive.org/details/djvirtualsursesionesvarios/MixVariosGenerosDeEneroDel2018.mp3"},
+      { track: 104, playlist: 4, name: "Electro POP I", file:"https://ia802808.us.archive.org/33/items/djvirtualsursesionesvarios/MixPopDjvirtualzur.mp3"},
+      { track: 104, playlist: 4, name: "Electro POP II", file:"https://ia802808.us.archive.org/33/items/djvirtualsursesionesvarios/MixElectroPop2017.mp3"}, 
+
+
+      // { track: 104, playlist: 4, name: "", file:""}, 
+      // { track: 104, playlist: 4, name: "", file:""}, 
 
 
    //   { track: 103, playlist: 2, name: "", file:""}, 
