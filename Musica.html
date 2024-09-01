@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Spotiday - Música</title>
+<title>Spotiday - Música V3</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -25,14 +25,7 @@
     background: var(--main-bg-color);
   }
 
-  /* .wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    background: var(--main-bg-color);
-  } */
-
+ 
   main {
     flex: 1;
     overflow-y: hidden; /* Desactiva el desplazamiento vertical en el elemento main */
@@ -67,10 +60,6 @@ ul {
   list-style-type: none;
 }
 
-
-/* Highlight Styles 
-::selection { background-color:#262223; color:#444; }
-::-moz-selection { background-color:#262223; color:#444; } */
 
 /* Works on Firefox */
 * { scrollbar-width: none; scrollbar-color: #065fd442 #065fd49e; }
@@ -144,8 +133,6 @@ ul {
   align-content: center;
 }
 .main__nav .link.is-active {
-  /* color: var(--main-link-active-color);
-  border-bottom: 3px solid green; */
     color: hsl(331.92deg 100% 57.82%);
     border-bottom: 3px solid green;
     background: radial-gradient(#2f386b78, #1d213747, #0e0e0e);
@@ -158,7 +145,6 @@ ul {
 
 .main__playlists h2 {
   font-size: 16px;
-  /* color: hsl(159.92deg 90% 43%); */
   color: hsl(201deg 63% 94%);
   margin: 0 0 2px 10px;
   border-bottom: 1px solid var(--main-border-color);
@@ -241,7 +227,7 @@ ul {
 }
 
 .album__musician {
- font-size: 1.0em; /* 13px;*/
+ font-size: 1.0em; 
    text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -249,7 +235,6 @@ ul {
 
 i {
   color: var(--main-font-color);
-  /*padding: 0 10px;*/
   padding: 0px 2vw;
   font-size: 18px;
   cursor: pointer;
@@ -283,13 +268,11 @@ i.fa-play-circle:hover {
 
 
 i.fas.fa-pause.pause-btn {
-  /* color: crimson; */
   font-size: 1.6em;
 }
 
 .mandos {
     padding-top: 12px;
-    /* width: 100%; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -338,23 +321,18 @@ input[type="range"]::-moz-range-thumb {
 
 #time-display {
     text-align: end;
-    /* font-size: 14px; */
 }
 
 
 
 .song__title, .plTitle {
-    /* font-size: 16px; */
     color: var(--main-highlight-color);
     margin: 0 auto;
     text-align: center;
     display: flex;
-    /* background: #00000054; */
     border-radius: 4px;
     justify-content: center;
-    /* font-size: 18px; */
     font-family: "Vibur", sans-serif;
-    /* background-color: #010a0175; */
     text-shadow: 0 0 2px #fff, 0 0 10px #ff13f8, 0 0 20px #0fa;
 }
 
@@ -390,7 +368,6 @@ ul { list-style:none; }
     position: relative;
     width: 92%;
     padding-left: 0px;
-    /* height: 166px; lo regula el item*/
     display: flex;
     margin: 0 auto;
     align-items: center;
@@ -411,7 +388,6 @@ ul { list-style:none; }
     overflow: hidden;
     margin-right: 5px;
     margin-left: 5px;
-    /* background: #030b17; */
     padding: 3px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -485,14 +461,7 @@ ul { list-style:none; }
 }
 }
 
-/* SOLO PARA PANTALLA NOTEBOOK 
-@media  (min-aspect-ratio: 1.3){
-.music__list-item {
-    width: 18vw;
-    height: calc(18vw* 0.75);
-  }
-}
-*/
+
 /* SOLO PARA PANTALLA VERTICAL */
 @media  (max-aspect-ratio: 0.7){
   h1 {
@@ -591,6 +560,56 @@ ul { list-style:none; }
             </div>
           </div>
 
+          <div id="playlist5">
+            <h2>POP Español 2000 & 2010</h2>
+            <div class="movies-list">
+              <button class="pre-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+              </button>
+              <button class="nxt-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+              </button>
+              <ul class="music__list" id="plList5"></ul>
+            </div>
+          </div>
+          <div id="playlist6">
+            <h2>POP Latino en Español</h2>
+            <div class="movies-list">
+              <button class="pre-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+              </button>
+              <button class="nxt-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+              </button>
+              <ul class="music__list" id="plList6"></ul>
+            </div>
+          </div>
+          <div id="playlist7">
+            <h2>POP Retro 90 & 2000</h2>
+            <div class="movies-list">
+              <button class="pre-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+              </button>
+              <button class="nxt-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+              </button>
+              <ul class="music__list" id="plList7"></ul>
+            </div>
+          </div>
+
+<!--           <div id="playlist99">
+            <h2>Electro Dance & Latino</h2>
+            <div class="movies-list">
+              <button class="pre-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/730/2/png-transparent-computer-icons-arrow-previous-button-angle-rectangle-triangle.png" alt="" />
+              </button>
+              <button class="nxt-btn" title="btn">
+                <img src="https://w7.pngwing.com/pngs/394/1024/png-transparent-arrow-arrows-forward-navigation-next-pointer-right-arrow-set-icon.png" alt="" />
+              </button>
+              <ul class="music__list" id="plList99"></ul>
+            </div>
+          </div> -->
+
           </section>
       </main>
   
@@ -688,11 +707,203 @@ ul { list-style:none; }
       { track: 102, playlist: 3, name: "Los Fabulosos Cadillacs", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20fabulosos%20cadillacs%20enganchados.mp3"},
       { track: 102, playlist: 3, name: "Los Autenticos Decadentes", file: "https://ia601802.us.archive.org/27/items/rocknacional_202103/los%20autenticos%20decadentes%20enganchados.mp3"},
 
-      { track: 103, playlist: 4, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
-      { track: 103, playlist: 4, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
+      { track: 104, playlist: 4, name: "Electro Dance - Mix I", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte1.mp3" },
+      { track: 104, playlist: 4, name: "Electro Dance - Mix II", file: "https://ia902808.us.archive.org/33/items/djvirtualsursesionesvarios/ElectroDance2017Parte2.mp3" },
       { track: 104, playlist: 4, name: "Electro Latino", file:"https://archive.org/details/djvirtualsursesionesvarios/MixVariosGenerosDeEneroDel2018.mp3"},
       { track: 104, playlist: 4, name: "Electro POP I", file:"https://ia802808.us.archive.org/33/items/djvirtualsursesionesvarios/MixPopDjvirtualzur.mp3"},
       { track: 104, playlist: 4, name: "Electro POP II", file:"https://ia802808.us.archive.org/33/items/djvirtualsursesionesvarios/MixElectroPop2017.mp3"}, 
+      { track: 104, playlist: 4, name: "Electro POP III", file:"https://ia802209.us.archive.org/3/items/MELOMANA/MELOMAN%C3%8DA.mp3"}, 
+
+
+
+{ track: 105, playlist: 5, name: "Bacilos - Caraluna (Re-Recorded)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/87. Bacilos - Caraluna (Re-Recorded).mp3"}, 
+{ track: 105, playlist: 5, name: "Chayanne - Dejaría Todo", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/62. Chayanne - Dejaría Todo.mp3"}, 
+{ track: 105, playlist: 5, name: "Chayanne - Torero", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/40. Chayanne - Torero.mp3"}, 
+{ track: 105, playlist: 5, name: "Chayanne - Un Siglo Sin Ti", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/82. Chayanne - Un Siglo Sin Ti.mp3"}, 
+{ track: 105, playlist: 5, name: "Chayanne - Y Tú Te Vas.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/120. Chayanne - Y Tú Te Vas.mp3"}, 
+{ track: 105, playlist: 5, name: "Christina Aguilera - Pero Me Acuerdo de Tí", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/67. Christina Aguilera - Pero Me Acuerdo de Tí.mp3"}, 
+{ track: 105, playlist: 5, name: "Enrique Iglesias - Dímelo.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/107. Enrique Iglesias - Dímelo.mp3"}, 
+{ track: 105, playlist: 5, name: "Enrique Iglesias - Escapar.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/167. Enrique Iglesias - Escapar.mp3"}, 
+{ track: 105, playlist: 5, name: "Enrique Iglesias - Experiencia Religiosa.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/111. Enrique Iglesias - Experiencia Religiosa.mp3"}, 
+{ track: 105, playlist: 5, name: "Fey - Azúcar Amargo", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/49. Fey - Azúcar Amargo.mp3"}, 
+{ track: 105, playlist: 5, name: "Fey - Media Naranja", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/98. Fey - Media Naranja.mp3"}, 
+{ track: 105, playlist: 5, name: "Franco de Vita - Si la Ves (feat. Sin Bandera)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/66. Franco de Vita - Si la Ves (feat. Sin Bandera).mp3"}, 
+{ track: 105, playlist: 5, name: "Franco de Vita - Te Amo (Album Version).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/137. Franco de Vita - Te Amo (Album Version).mp3"}, 
+{ track: 105, playlist: 5, name: "Franco de Vita - Tú de Qué Vas", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/28. Franco de Vita - Tú de Qué Vas.mp3"}, 
+{ track: 105, playlist: 5, name: "Gloria Estefan - Hoy (Spanish Version).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/177. Gloria Estefan - Hoy (Spanish Version).mp3"}, 
+{ track: 105, playlist: 5, name: "Juanes - A Dios Le Pido", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/75. Juanes - A Dios Le Pido.mp3"}, 
+{ track: 105, playlist: 5, name: "Juanes - Es Por Ti", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/26. Juanes - Es Por Ti.mp3"}, 
+{ track: 105, playlist: 5, name: "Juanes - La Camisa Negra", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/42. Juanes - La Camisa Negra.mp3"}, 
+{ track: 105, playlist: 5, name: "Julieta Venegas - Algo Está Cambiando.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/144. Julieta Venegas - Algo Está Cambiando.mp3"}, 
+{ track: 105, playlist: 5, name: "Julieta Venegas - Andar Conmigo", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/10. Julieta Venegas - Andar Conmigo.mp3"}, 
+{ track: 105, playlist: 5, name: "Julieta Venegas - Lento", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/04. Julieta Venegas - Lento.mp3"}, 
+{ track: 105, playlist: 5, name: "Julieta Venegas - Me Voy", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/33. Julieta Venegas - Me Voy.mp3"}, 
+{ track: 105, playlist: 5, name: "Julieta Venegas - Oleada.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/174. Julieta Venegas - Oleada.mp3"}, 
+{ track: 105, playlist: 5, name: "La 5ª Estación - Algo Más", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/18. La 5ª Estación - Algo Más.mp3"}, 
+{ track: 105, playlist: 5, name: "La 5ª Estación - Daría.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/145. La 5ª Estación - Daría.mp3"}, 
+{ track: 105, playlist: 5, name: "La 5ª Estación - Dónde Irán.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/171. La 5ª Estación - Dónde Irán.mp3"}, 
+{ track: 105, playlist: 5, name: "La 5ª Estación - El Sol No Regresa", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/05. La 5ª Estación - El Sol No Regresa.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Cuídate", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/12. La Oreja de Van Gogh - Cuídate.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Dulce Locura", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/86. La Oreja de Van Gogh - Dulce Locura.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - La Playa", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/64. La Oreja de Van Gogh - La Playa.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Muñeca de Trapo.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/179. La Oreja de Van Gogh - Muñeca de Trapo.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Paris.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/126. La Oreja de Van Gogh - Paris.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Pop", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/54. La Oreja de Van Gogh - Pop.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Puedes Contar Conmigo", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/38. La Oreja de Van Gogh - Puedes Contar Conmigo.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Rosas", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/15. La Oreja de Van Gogh - Rosas.mp3"}, 
+{ track: 105, playlist: 5, name: "La Oreja de Van Gogh - Soledad.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/170. La Oreja de Van Gogh - Soledad.mp3"}, 
+{ track: 105, playlist: 5, name: "Laura Pausini - Entre tú y mil mares", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/80. Laura Pausini - Entre tú y mil mares.mp3"}, 
+{ track: 105, playlist: 5, name: "Luis Miguel - Dame.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/110. Luis Miguel - Dame.mp3"}, 
+{ track: 105, playlist: 5, name: "Luis Miguel - Por Debajo De La Mesa", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/60. Luis Miguel - Por Debajo De La Mesa.mp3"}, 
+{ track: 105, playlist: 5, name: "Luis Miguel - Te necesito", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/73. Luis Miguel - Te necesito.mp3"}, 
+{ track: 105, playlist: 5, name: "Mecano - Cruz de navajas", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/63. Mecano - Cruz de navajas.mp3"}, 
+{ track: 105, playlist: 5, name: "Mecano - La Fuerza del Destino.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/178. Mecano - La Fuerza del Destino.mp3"}, 
+{ track: 105, playlist: 5, name: "Mecano - Me cuesta tanto olvidarte.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/124. Mecano - Me cuesta tanto olvidarte.mp3"}, 
+{ track: 105, playlist: 5, name: "Miranda! - Don", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/03. Miranda! - Don.mp3"}, 
+{ track: 105, playlist: 5, name: "Miranda! - Perfecta", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/45. Miranda! - Perfecta.mp3"}, 
+{ track: 105, playlist: 5, name: "Miranda! - Yo Te Diré.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/102. Miranda! - Yo Te Diré.mp3"}, 
+{ track: 105, playlist: 5, name: "Natalia Lafourcade - En el 2000", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/06. Natalia Lafourcade - En el 2000.mp3"}, 
+{ track: 105, playlist: 5, name: "Natalia Lafourcade - Hasta la Raíz", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/19. Natalia Lafourcade - Hasta la Raíz.mp3"}, 
+{ track: 105, playlist: 5, name: "Natalia Lafourcade - Lo Que Construimos", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/27. Natalia Lafourcade - Lo Que Construimos.mp3"}, 
+{ track: 105, playlist: 5, name: "Natalia Lafourcade - Mi Lugar Favorito", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/50. Natalia Lafourcade - Mi Lugar Favorito.mp3"}, 
+{ track: 105, playlist: 5, name: "Natalia Lafourcade - Nunca Es Suficiente", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/37. Natalia Lafourcade - Nunca Es Suficiente.mp3"}, 
+{ track: 105, playlist: 5, name: "Paulina Rubio - El Ultimo Adios", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/96. Paulina Rubio - El Ultimo Adios.mp3"}, 
+{ track: 105, playlist: 5, name: "Paulina Rubio - Mío", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/71. Paulina Rubio - Mío.mp3"}, 
+{ track: 105, playlist: 5, name: "RBD - Sálvame", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/24. RBD - Sálvame.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Creo en Ti.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/118. Reik - Creo en Ti.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Invierno.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/169. Reik - Invierno.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Noviembre Sin Ti", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/16. Reik - Noviembre Sin Ti.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Qué Vida la Mía", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/07. Reik - Qué Vida la Mía.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Tu Mirada.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/146. Reik - Tu Mirada.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - We Only Have Tonight", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/88. Reik - We Only Have Tonight.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Ya Me Enteré", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/22. Reik - Ya Me Enteré.mp3"}, 
+{ track: 105, playlist: 5, name: "Reik - Yo Quisiera", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/68. Reik - Yo Quisiera.mp3"}, 
+{ track: 105, playlist: 5, name: "Ricky Martin - Livin' la Vida Loca.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/114. Ricky Martin - Livin' la Vida Loca.mp3"}, 
+{ track: 105, playlist: 5, name: "Ricky Martin - Tal Vez.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/123. Ricky Martin - Tal Vez.mp3"}, 
+{ track: 105, playlist: 5, name: "Ricky Martin - Te Extraño, Te Olvido, Te Amo.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/159. Ricky Martin - Te Extraño, Te Olvido, Te Amo.mp3"}, 
+{ track: 105, playlist: 5, name: "Ricky Martin - Tu Recuerdo (feat. La Mari De Chambao & Tommy Torres) (MTV Unplugged Version).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/136. Ricky Martin - Tu Recuerdo (feat. La Mari De Chambao & Tommy Torres) (MTV Unplugged Version).mp3"}, 
+{ track: 105, playlist: 5, name: "Ricky Martin - Vuelve", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/65. Ricky Martin - Vuelve.mp3"}, 
+{ track: 105, playlist: 5, name: "Shakira - La Tortura (feat. Alejandro Sanz) (Album)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/41. Shakira - La Tortura (feat. Alejandro Sanz) (Album).mp3"}, 
+{ track: 105, playlist: 5, name: "Sin Bandera - Entra En Mi Vida", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/57. Sin Bandera - Entra En Mi Vida.mp3"}, 
+{ track: 105, playlist: 5, name: "Sin Bandera - Mientes Tan Bien", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/77. Sin Bandera - Mientes Tan Bien.mp3"}, 
+{ track: 105, playlist: 5, name: "Sin Bandera - Que Lloro.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/119. Sin Bandera - Que Lloro.mp3"}, 
+{ track: 105, playlist: 5, name: "Thalia - El Próximo Viernes (Live Version)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/97. Thalia - El Próximo Viernes (Live Version).mp3"}, 
+{ track: 105, playlist: 5, name: "Thalia - Equivocada (Live Version).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/138. Thalia - Equivocada (Live Version).mp3"}, 
+{ track: 105, playlist: 5, name: "Thalia - No Me Enseñaste.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/128. Thalia - No Me Enseñaste.mp3"}, 
+{ track: 105, playlist: 5, name: "Tiziano Ferro - No me lo puedo explicar.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/134. Tiziano Ferro - No me lo puedo explicar.mp3"}, 
+{ track: 105, playlist: 5, name: "Tiziano Ferro - Tardes Negras", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/79. Tiziano Ferro - Tardes Negras.mp3"}, 
+{ track: 105, playlist: 6, name: "Carlos Rivera - Fascinación.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/175. Carlos Rivera - Fascinación.mp3"}, 
+{ track: 105, playlist: 6, name: "Carlos Rivera - Me Muero.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/141. Carlos Rivera - Me Muero.mp3"}, 
+{ track: 105, playlist: 6, name: "Carlos Rivera - Regrésame Mi Corazón.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/109. Carlos Rivera - Regrésame Mi Corazón.mp3"}, 
+{ track: 105, playlist: 6, name: "HA-ASH - Amor a Medias.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/149. HA-ASH - Amor a Medias.mp3"}, 
+{ track: 105, playlist: 6, name: "HA-ASH - Estés Donde Estés", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/09. HA-ASH - Estés Donde Estés.mp3"}, 
+{ track: 105, playlist: 6, name: "HA-ASH - Lo Aprendí de Ti (HA-ASH Primera Fila - Hecho Realidad En Vivo)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/35. HA-ASH - Lo Aprendí de Ti (HA-ASH Primera Fila - Hecho Realidad En Vivo).mp3"}, 
+{ track: 105, playlist: 6, name: "HA-ASH - Odio Amarte", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/48. HA-ASH - Odio Amarte.mp3"}, 
+{ track: 105, playlist: 6, name: "Jesse & Joy - Espacio sideral", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/69. Jesse & Joy - Espacio sideral.mp3"}, 
+{ track: 105, playlist: 6, name: "Ricky Martin - Vente Pa' Ca (feat. Maluma)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/02. Ricky Martin - Vente Pa' Ca (feat. Maluma).mp3"}, 
+{ track: 105, playlist: 6, name: "Río Roma - Caminar de Tu Mano (feat. Fonseca).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/106. Río Roma - Caminar de Tu Mano (feat. Fonseca).mp3"}, 
+{ track: 105, playlist: 6, name: "Yuridia - Ya Te Olvidé.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/129. Yuridia - Ya Te Olvidé.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandra Guzmán - Eternamente Bella", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/72. Alejandra Guzmán - Eternamente Bella.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandra Guzmán - Volverte a Amar.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/140. Alejandra Guzmán - Volverte a Amar.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandro Fernández - Canta Corazón", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/83. Alejandro Fernández - Canta Corazón.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandro Fernández - Me Dediqué a Perderte", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/14. Alejandro Fernández - Me Dediqué a Perderte.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandro Fernández - Qué Voy a Hacer Con Mi Amor.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/117. Alejandro Fernández - Qué Voy a Hacer Con Mi Amor.mp3"}, 
+{ track: 105, playlist: 7, name: "Alejandro Sanz - Corazón partío.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/135. Alejandro Sanz - Corazón partío.mp3"}, 
+{ track: 105, playlist: 7, name: "Aleks Syntek - Corazones Invencibles.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/154. Aleks Syntek - Corazones Invencibles.mp3"}, 
+{ track: 105, playlist: 7, name: "Aleks Syntek - Duele El Amor", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/56. Aleks Syntek - Duele El Amor.mp3"}, 
+{ track: 105, playlist: 7, name: "Álex Ubago - Aunque no te pueda ver.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/130. Álex Ubago - Aunque no te pueda ver.mp3"}, 
+{ track: 105, playlist: 7, name: "Ana Gabriel - Cosas del Amor (with Vikki Carr)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/78. Ana Gabriel - Cosas del Amor (with Vikki Carr).mp3"}, 
+{ track: 105, playlist: 7, name: "Ana Gabriel - Simplemente Amigos", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/84. Ana Gabriel - Simplemente Amigos.mp3"}, 
+{ track: 105, playlist: 7, name: "Belanova - Por Ti", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/44. Belanova - Por Ti.mp3"}, 
+{ track: 105, playlist: 7, name: "Belinda - Ángel (Once in Your Lifetime)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/93. Belinda - Ángel (Once in Your Lifetime).mp3"}, 
+{ track: 105, playlist: 7, name: "Belinda - Lo Siento (I'm Sorry).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/157. Belinda - Lo Siento (I'm Sorry).mp3"}, 
+{ track: 105, playlist: 7, name: "Belinda - Vivir (Any Better).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/176. Belinda - Vivir (Any Better).mp3"}, 
+{ track: 105, playlist: 7, name: "Camila - Abrazame.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/160. Camila - Abrazame.mp3"}, 
+{ track: 105, playlist: 7, name: "Camila - Coleccionista de Canciones.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/131. Camila - Coleccionista de Canciones.mp3"}, 
+{ track: 105, playlist: 7, name: "Camila - Mientes", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/81. Camila - Mientes.mp3"}, 
+{ track: 105, playlist: 7, name: "Camila - Todo Cambió", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/34. Camila - Todo Cambió.mp3"}, 
+{ track: 105, playlist: 7, name: "Cómplices - Es por Ti.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/153. Cómplices - Es por Ti.mp3"}, 
+{ track: 105, playlist: 7, name: "Cristian Castro - Azul", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/92. Cristian Castro - Azul.mp3"}, 
+{ track: 105, playlist: 7, name: "Cristian Castro - Lloran las Rosas (feat. Jorge Celedon & Jimmy Zambrano) (Primera Fila - Live Version).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/165. Cristian Castro - Lloran las Rosas (feat. Jorge Celedon & Jimmy Zambrano) (Primera Fila - Live Version).mp3"}, 
+{ track: 105, playlist: 7, name: "Cristian Castro - Lloviendo Estrellas", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/70. Cristian Castro - Lloviendo Estrellas.mp3"}, 
+{ track: 105, playlist: 7, name: "Cristian Castro - No Hace Falta.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/155. Cristian Castro - No Hace Falta.mp3"}, 
+{ track: 105, playlist: 7, name: "Diego Boneta - Hasta Que Me Olvides", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/58. Diego Boneta - Hasta Que Me Olvides.mp3"}, 
+{ track: 105, playlist: 7, name: "Diego Torres - Color Esperanza", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/74. Diego Torres - Color Esperanza.mp3"}, 
+{ track: 105, playlist: 7, name: "Diego Torres - Sueños.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/152. Diego Torres - Sueños.mp3"}, 
+{ track: 105, playlist: 7, name: "Dvicio - Casi Humanos", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/90. Dvicio - Casi Humanos.mp3"}, 
+{ track: 105, playlist: 7, name: "Elefante - Así Es la Vida", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/21. Elefante - Así Es la Vida.mp3"}, 
+{ track: 105, playlist: 7, name: "Eros Ramazzotti - La Cosa Mas Bella", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/11. Eros Ramazzotti - La Cosa Mas Bella.mp3"}, 
+{ track: 105, playlist: 7, name: "Escritorio - Ricardo Arjona ft Gaby Moreno -Fuiste Tú", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/36. Escritorio - Ricardo Arjona ft Gaby Moreno -Fuiste Tú.mp3"}, 
+{ track: 105, playlist: 7, name: "Federico Vega - Cielo.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/181. Federico Vega - Cielo.mp3"}, 
+{ track: 105, playlist: 7, name: "Gloria Trevi - Pelo Suelto.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/103. Gloria Trevi - Pelo Suelto.mp3"}, 
+{ track: 105, playlist: 7, name: "JotDog - Las Pequeñas Cosas.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/172. JotDog - Las Pequeñas Cosas.mp3"}, 
+{ track: 105, playlist: 7, name: "Kabah - Al Pasar (with Alejandra Guzmán).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/115. Kabah - Al Pasar (with Alejandra Guzmán).mp3"}, 
+{ track: 105, playlist: 7, name: "Kabah - Mai Mai", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/51. Kabah - Mai Mai.mp3"}, 
+{ track: 105, playlist: 7, name: "Kalimba - Duele (Crazy).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/116. Kalimba - Duele (Crazy).mp3"}, 
+{ track: 105, playlist: 7, name: "Kalimba - Este Frío.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/166. Kalimba - Este Frío.mp3"}, 
+{ track: 105, playlist: 7, name: "Kany Garcia - Hoy Ya Me Voy (feat. Franco de Vita).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/127. Kany Garcia - Hoy Ya Me Voy (feat. Franco de Vita).mp3"}, 
+{ track: 105, playlist: 7, name: "Kudai - Sin Despertar", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/47. Kudai - Sin Despertar.mp3"}, 
+{ track: 105, playlist: 7, name: "Leonel Garcia - Para Empezar.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/158. Leonel Garcia - Para Empezar.mp3"}, 
+{ track: 105, playlist: 7, name: "Lu - Por Besarte", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/94. Lu - Por Besarte.mp3"}, 
+{ track: 105, playlist: 7, name: "Maria Jose - Adelante Corazón.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/161. Maria Jose - Adelante Corazón.mp3"}, 
+{ track: 105, playlist: 7, name: "Maria Jose - Prefiero Ser Su Amante", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/43. Maria Jose - Prefiero Ser Su Amante.mp3"}, 
+{ track: 105, playlist: 7, name: "Matisse - Cuando Te Encontré", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/89. Matisse - Cuando Te Encontré.mp3"}, 
+{ track: 105, playlist: 7, name: "Matisse - Más Que Amigos.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/168. Matisse - Más Que Amigos.mp3"}, 
+{ track: 105, playlist: 7, name: "MDO - Te Quise Olvidar.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/122. MDO - Te Quise Olvidar.mp3"}, 
+{ track: 105, playlist: 7, name: "Moderatto - Muriendo Lento (feat. Belinda)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/52. Moderatto - Muriendo Lento (feat. Belinda).mp3"}, 
+{ track: 105, playlist: 7, name: "Moenia - En Que Momento_.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/156. Moenia - En Que Momento_.mp3"}, 
+{ track: 105, playlist: 7, name: "Moenia - Juegos de Amor.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/104. Moenia - Juegos de Amor.mp3"}, 
+{ track: 105, playlist: 7, name: "Moenia - Ni Tú Ni Nadie", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/32. Moenia - Ni Tú Ni Nadie.mp3"}, 
+{ track: 105, playlist: 7, name: "Mónica Naranjo - El Amor Coloca", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/95. Mónica Naranjo - El Amor Coloca.mp3"}, 
+{ track: 105, playlist: 7, name: "Mónica Naranjo - Oyeme.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/142. Mónica Naranjo - Oyeme.mp3"}, 
+{ track: 105, playlist: 7, name: "Natalia Jiménez - Quédate Con Ella.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/150. Natalia Jiménez - Quédate Con Ella.mp3"}, 
+{ track: 105, playlist: 7, name: "Natalia y La Forquetina - Casa", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/99. Natalia y La Forquetina - Casa.mp3"}, 
+{ track: 105, playlist: 7, name: "Natalia y La Forquetina - Ser Humano.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/173. Natalia y La Forquetina - Ser Humano.mp3"}, 
+{ track: 105, playlist: 7, name: "Nikki Clan - No Me Digas Que No ( Boy Like You ).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/162. Nikki Clan - No Me Digas Que No ( Boy Like You ).mp3"}, 
+{ track: 105, playlist: 7, name: "Onda Vaselina - Mírame a los Ojos.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/101. Onda Vaselina - Mírame a los Ojos.mp3"}, 
+{ track: 105, playlist: 7, name: "Onda Vaselina - Te Quiero Tanto, Tanto.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/132. Onda Vaselina - Te Quiero Tanto, Tanto.mp3"}, 
+{ track: 105, playlist: 7, name: "Onda Vaselina - Tus Besos.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/180. Onda Vaselina - Tus Besos.mp3"}, 
+{ track: 105, playlist: 7, name: "Onda Vaselina - Un Pie Tras Otro Pie.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/147. Onda Vaselina - Un Pie Tras Otro Pie.mp3"}, 
+{ track: 105, playlist: 7, name: "OV7 - Enloquéceme", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/91. OV7 - Enloquéceme.mp3"}, 
+{ track: 105, playlist: 7, name: "OV7 - La Calle de las Sirenas (En Vivo)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/20. OV7 - La Calle de las Sirenas (En Vivo).mp3"}, 
+{ track: 105, playlist: 7, name: "OV7 - Shabadabada", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/31. OV7 - Shabadabada.mp3"}, 
+{ track: 105, playlist: 7, name: "Pandora - Tocando Fondo (with Kalimba).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/139. Pandora - Tocando Fondo (with Kalimba).mp3"}, 
+{ track: 105, playlist: 7, name: "Playa Limbo - El Eco de Tu Voz", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/30. Playa Limbo - El Eco de Tu Voz.mp3"}, 
+{ track: 105, playlist: 7, name: "Ragazzi - TBC.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/100. Ragazzi - TBC.mp3"}, 
+{ track: 105, playlist: 7, name: "Reyli Barba - Amor del Bueno", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/59. Reyli Barba - Amor del Bueno.mp3"}, 
+{ track: 105, playlist: 7, name: "Reyli Barba - Desde Que Llegaste.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/112. Reyli Barba - Desde Que Llegaste.mp3"}, 
+{ track: 105, playlist: 7, name: "Ricardo Arjona - El Problema", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/76. Ricardo Arjona - El Problema.mp3"}, 
+{ track: 105, playlist: 7, name: "Ricardo Arjona - Mujeres.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/113. Ricardo Arjona - Mujeres.mp3"}, 
+{ track: 105, playlist: 7, name: "Sasha, Benny y Erik - Cada Beso (Primera Fila).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/108. Sasha, Benny y Erik - Cada Beso (Primera Fila).mp3"}, 
+{ track: 105, playlist: 7, name: "Sasha, Benny y Erik - Serás el Aire (Primera Fila).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/164. Sasha, Benny y Erik - Serás el Aire (Primera Fila).mp3"}, 
+{ track: 105, playlist: 7, name: "Sentidos Opuestos - ¿Donde Están_.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/148. Sentidos Opuestos - ¿Donde Están_.mp3"}, 
+{ track: 105, playlist: 7, name: "Sentidos Opuestos - Amor De Papel", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/53. Sentidos Opuestos - Amor De Papel.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Antologia", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/17. Shakira - Antologia.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Ciega, Sordomuda", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/01. Shakira - Ciega, Sordomuda.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Dia de Enero.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/143. Shakira - Dia de Enero.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Donde Estas Corazon", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/46. Shakira - Donde Estas Corazon.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Estoy Aquí", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/13. Shakira - Estoy Aquí.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Inevitable.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/151. Shakira - Inevitable.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Las de la Intuición.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/105. Shakira - Las de la Intuición.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Loba", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/29. Shakira - Loba.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - No (feat. Gustavo Cerati).", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/125. Shakira - No (feat. Gustavo Cerati).mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Pies Descalzos, Sueños Blancos", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/55. Shakira - Pies Descalzos, Sueños Blancos.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Que Me Quedes Tú", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/23. Shakira - Que Me Quedes Tú.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Si Te Vas", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/85. Shakira - Si Te Vas.mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Suerte (Whenever, Wherever)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/08. Shakira - Suerte (Whenever, Wherever).mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Te Aviso, Te Anuncio (Tango)", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/39. Shakira - Te Aviso, Te Anuncio (Tango).mp3"}, 
+{ track: 105, playlist: 7, name: "Shakira - Tú", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/61. Shakira - Tú.mp3"}, 
+{ track: 105, playlist: 7, name: "Timbiriche - Tú Y Yo Somos Uno Mismo.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/163. Timbiriche - Tú Y Yo Somos Uno Mismo.mp3"}, 
+{ track: 105, playlist: 7, name: "Tranzas - Morí", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/25. Tranzas - Morí.mp3"}, 
+{ track: 105, playlist: 7, name: "Tranzas - Un nuevo amor.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/121. Tranzas - Un nuevo amor.mp3"}, 
+{ track: 105, playlist: 7, name: "Yahir - La Locura.", file:"https://ia801204.us.archive.org/18/items/va-pop-en-espanol-90s-y-2000-2023/133. Yahir - La Locura.mp3"}, 
+
+
+
+
+
+
+
 
 
       // { track: 104, playlist: 4, name: "", file:""}, 
